@@ -1,0 +1,104 @@
+name: Publish SOPs
+
+# Two channels from one build:
+#   live    - the Agency-approved release, built from the latest v* tag,
+#             served at the site root
+#   staging - the proposed next version, built from the pushed ref (normally
+#             main), served under /staging/ with a draft banner
+# Releasing an approved version = push a v* tag; the live site follows it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_pages:
+        description: "Also deploy the site to GitHub Pages"
+        type: boolean
+        default: false
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+# One run per branch/PR at a time; superseded runs are cancelled.
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history + tags, for the live (tagged) build
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install markdown-it-py
+
+      # Google Chrome is preinstalled on ubuntu-latest runners and is used
+      # by build.py for print-to-PDF.
+      - name: Build staging site (this ref, proposed next version)
+        run: python publish/build.py --channel staging --out dist-staging
+
+      - name: Build live site (latest approved v* tag)
+        run: |
+          TAG=$(git tag --list 'v*' --sort=-v:refname | head -n1)
+          if [ -n "$TAG" ]; then
+            echo "Building live site from $TAG"
+            git checkout --detach "$TAG"
+          else
+            echo "No v* tag found; building live site from the current ref"
+          fi
+          python publish/build.py --out dist
+
+      - name: Assemble site (staging under /staging/)
+        run: mv dist-staging dist/staging
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sop-site
+          path: dist/
+
+  deploy-pages:
+    # Deploy on pushes to main and on release tags; manual runs deploy only
+    # if the deploy_pages box is ticked.
+    if: >-
+      (github.event_name == 'push' &&
+        (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))) ||
+      (github.event_name == 'workflow_dispatch' && inputs.deploy_pages)
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: sop-site
+          path: dist/
+
+      # Custom domain for GitHub Pages (CNAME record -> chill-division.github.io)
+      - name: Add custom domain
+        run: echo "sops.chilldivision.co.nz" > dist/CNAME
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
