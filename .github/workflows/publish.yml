@@ -1,0 +1,131 @@
+name: Publish SOPs
+
+# Two channels from one build:
+#   live    - the Agency-approved release, built from the main branch and
+#             served at the site root
+#   staging - the proposed next version, built from the staging branch (or a
+#             pull request) and served under /staging/ with a draft banner
+# Every run builds both. Only main may deploy to GitHub Pages (the
+# github-pages environment protection rules), so a push to staging asks for a
+# deploy run on main, which rebuilds and deploys the whole site.
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_pages:
+        description: "Also deploy the site to GitHub Pages"
+        type: boolean
+        default: false
+  push:
+    branches:
+      - main
+      - staging
+  pull_request:
+    branches:
+      - main
+      - staging
+
+permissions:
+  contents: read
+
+# One run per branch/PR at a time. Runs on main queue rather than cancel, so
+# every deploy requested from staging still goes out.
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build:
+    # Pinned: build.py prints PDFs with the Google Chrome preinstalled on the
+    # runner image, so a new image is only adopted once it's been checked.
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # all branches, so both channels can be built
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install markdown-it-py
+
+      - name: Build live site (main, the approved release)
+        run: |
+          git checkout --quiet --detach origin/main
+          python publish/build.py --out dist
+
+      - name: Build staging site (staging branch, or this pull request)
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            REF="${{ github.sha }}"
+          elif git rev-parse --verify --quiet origin/staging >/dev/null; then
+            REF=origin/staging
+          else
+            echo "No staging branch yet, skipping the staging build"
+            exit 0
+          fi
+          git checkout --quiet --detach "$REF"
+          python publish/build.py --channel staging --out dist/staging
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: sop-site
+          path: dist/
+
+  deploy-pages:
+    # Deploys only ever run from main: on a push to main, or on a manual /
+    # requested run against main with the deploy_pages box ticked.
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' ||
+        (github.event_name == 'workflow_dispatch' && inputs.deploy_pages))
+    needs: build
+    runs-on: ubuntu-24.04
+    # Deploy one at a time rather than racing.
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: sop-site
+          path: dist/
+
+      # Custom domain for GitHub Pages (CNAME record -> chill-division.github.io)
+      - name: Add custom domain
+        run: echo "sops.chilldivision.co.nz" > dist/CNAME
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/
+
+      - id: deployment
+        uses: actions/deploy-pages@v5
+
+  request-deploy:
+    # staging can't deploy itself, so once it has built cleanly, ask GitHub to
+    # run this workflow on main with deploy_pages ticked. GITHUB_TOKEN is
+    # allowed to start workflow_dispatch runs.
+    if: >-
+      github.ref != 'refs/heads/main' &&
+      ((github.event_name == 'push' && github.ref == 'refs/heads/staging') ||
+        (github.event_name == 'workflow_dispatch' && inputs.deploy_pages))
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Request a deploy from main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --repo "${{ github.repository }}" --ref main -f deploy_pages=true
