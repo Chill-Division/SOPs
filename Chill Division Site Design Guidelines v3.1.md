@@ -5,7 +5,7 @@
 **Cultivation Facility**  
 Site design guidelines
 
-v3.0.1
+v3.1
 "The complete set"
 
 # Introduction
@@ -18,6 +18,8 @@ v3.0.1
 > such mistakes, due to a lack of that context-specific awareness.
 
 These ***Site Design Guidelines*** work together with the ***Chill Division Security Procedures*** and the ***Chill Division Cultivation Procedures*** documents. You will notice that the first chapter is similar across both the Site Design and Security documents. This is because the information is crucial for both planning your site and keeping it secure. A licence application should include all 3x documents.
+
+These are not GACP or GMP SOPs, and they won't get you either certification. Neither is needed under NZMQS for a Cultivator to bring product through verification, when it's dried / packed / verified in a 3rd party GMP facility.
 
 While regulations allow for indoor, outdoor, and glasshouse cultivation, this document focuses on indoor cultivation. This is because growing indoors is the most reliable way to consistently meet the NZMQS microbial standards for quality. These guidelines are flexible enough to work for a fit-out in a rural shed, or a warehouse in a suburban industrial area. The main goal is to help you cultivate high-potency THC-dominant flower that will be sold as a final dried-flower product.
 
@@ -69,7 +71,7 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
         1. This often includes a “lunchroom” on the externally facing wall which also has an adjacent roller door. Due to the roller door being a single barrier to entry, although there may be two doors any personnel would normally enter through via the lunchroom, additional internal barriers to entry would need to be considered.
 
-        2. Consideration should be given to the Dead-End Open Path length, often limited to 20 meters. This is the path plotted 1 meter from the wall of the most remote point in the room, exiting to the nearest open pathway for fire escape.
+        2. Consideration should also be given to the Dead-End Open Path length, as the internal walls and barriers to entry required for security can easily create long dead ends. See §2.11 for the limits that apply.
 
   ## General security principals
 
@@ -109,7 +111,7 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
     1. Care should be taken where any electrical / data cabling may enter the room, as well as plumbing for fertigation / drainage, and CO2 related penetrations.
 
-20. Similarly, doors to those rooms should also be fitted with an edge / automatic door bottom sealer, such as Ravenseal RP10Si frame-seal / RP8Si door bottom automatic sealer, to prevent further odour escaping or CO2 leaking.
+20. Similarly, doors to those rooms should also be fitted with an edge / automatic door bottom sealer, such as [Ravenseal RP10Si](https://www.nzhardware.co.nz/product-group/43842-raven-rp10si-frame-seals-clear-anodised/category/6487-door-and-window-seals) frame-seal / [RP8Si](https://www.nzhardware.co.nz/product-group/4196-raven-rp8si-bottom-door-seal/category/6487-door-and-window-seals) door bottom automatic sealer, to prevent further odour escaping or CO2 leaking.
 
     1. Alternatively, a hermetically sealed door should be used.
 
@@ -255,9 +257,9 @@ Based on these estimates you would likely have approx 40-50sqm of flowering cano
 
 2. Thoughtful consideration should be given to physical access to every individual plant, including walkways, drain table width, and other obstructions.
 
-    1. Isles and walk spaces should be a minimum of 800mm wide, as is a standard door width. 1200mm is preferable
+    1. Isles and walk spaces should be a minimum of 850mm wide, as they count towards the dead-end open path (see §2.11). 1200mm is preferable.
 
-    2. Isles should also exist around the exterior of the room so plants can be accessed from more than one side — see the Tables, isles and plant density section (item 79) for table placement and access requirements, including the moveable-table exception.
+    2. Isles should also exist around the exterior of the room so plants can be accessed from more than one side — see the Tables, isles and plant density section (item 80) for table placement and access requirements, including the moveable-table exception.
 
 3. Rooms must be insulated to at least an R2.0 value on the walls / ceiling. Where insulated chiller panels are used as the wall / ceiling lining (see §2.10), the panel itself provides this insulation; the guidance below applies to any non-panel build-up, such as the wall behind ACM board.
 
@@ -289,7 +291,7 @@ Based on these estimates you would likely have approx 40-50sqm of flowering cano
 
     3. Advice from an electrician should be sought regarding any power or ethernet sockets. The faceplate itself should not be sealed, however it is worth seeking advice regarding sealing under the faceplate.
 
-8. The door to the room must be sealed as specified in §1.20 — hermetically, or with a flexible silicon frame seal such as the [Ravenseal RP10Si](https://www.nzhardware.co.nz/product-group/4084-raven-rp10si-frame-seals/category/6487-door-and-window-seals), together with an under-door automatic retracting seal such as the [RP8Si](https://www.nzhardware.co.nz/product-group/4196-raven-rp8si-bottom-door-seal/category/6487-door-and-window-seals) where there is any gap between the door and the floor.
+8. The door to the room must be sealed as specified in §1.20 — hermetically, or with a flexible silicon frame seal such as the [Ravenseal RP10Si](https://www.nzhardware.co.nz/product-group/43842-raven-rp10si-frame-seals-clear-anodised/category/6487-door-and-window-seals), together with an under-door automatic retracting seal such as the [RP8Si](https://www.nzhardware.co.nz/product-group/4196-raven-rp8si-bottom-door-seal/category/6487-door-and-window-seals) where there is any gap between the door and the floor.
 
 9. Regardless of the lining chosen, all internal wall and ceiling surfaces must be non-porous and wipeable. Insulated chiller panels and ACM board both satisfy this by default; where a porous substrate such as plywood is used it must be sealed with a non-porous coating such as fibreglass.
 
@@ -301,9 +303,11 @@ Based on these estimates you would likely have approx 40-50sqm of flowering cano
 
     3. Alternatively, the panels may be anchored to the primary roof structure of the building. Note that doing so changes the internal structure into a permanent fixture of the building (rather than a free-standing internal room), which will likely require building consent — seek advice before proceeding.
 
-11. When designing the layout of the floorplan, consideration should be given to the length for “Dead end to open path” as referred to in the [C/AS2 Acceptable Solution for Buildings other than Risk Group SH (Table 3.2)](https://www.building.govt.nz/assets/Uploads/building-code-compliance/c-protection-from-fire/asvm/cas2-2019-protection-from-fire-amendment-3.pdf). 25 meters is usually the target for small cultivation facilities classified under Risk Group WB, and avoids the requirement of a sprinkler system installation.
+11. When designing the layout of the floorplan, consideration should be given to the length for “Dead end to open path” as referred to in the [C/AS2 Acceptable Solution for Buildings other than Risk Group SH, 2nd Edition (Table 3.3.1.1)](https://www.building.govt.nz/building-code-compliance/c-protection-from-fire/c-clauses-c1-c6/acceptable-solutions-and-verification-methods/cas2-2nd-edition). This is the path plotted 1 meter from the wall of the most remote point in the room, exiting to the nearest open pathway for fire escape. 25 meters is usually the target for small cultivation facilities classified under Risk Group WB, and avoids the requirement of a sprinkler system installation.
 
     1. Where unsure, seek advice from a Fire & Safety consultant.
+
+    2. Escape routes also need to be wide enough. Pathways such as hallways need to be at least 850mm wide, and doors at least 760mm wide, as set out in the [C/AS2 2nd Edition](https://www.building.govt.nz/building-code-compliance/c-protection-from-fire/c-clauses-c1-c6/acceptable-solutions-and-verification-methods/cas2-2nd-edition).
 
 ## Sensors / microcontrollers
 
@@ -327,7 +331,7 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
 15. Consideration must be given to the maximum length of cables for i2c devices, with 1m cable runs often being near the limit, especially where splitters are utilised.
 
-16. An [SCD4x](https://shop.m5stack.com/products/co2-unit-with-temperature-and-humidity-sensor-scd40) sensor should be used for CO2 sensing, as well as VPD calculations.
+16. An [SCD4x](https://shop.m5stack.com/products/co2-unit-with-temperature-and-humidity-sensor-scd40) sensor should be used for CO2 sensing. Its built-in humidity sensor isn't accurate enough for VPD calculations though, so an SHT45 should be used for temperature, humidity and VPD instead.
 
     1. Multiple sensors should be used, with at least one for each end of a room (lengthwise).
 
@@ -345,6 +349,8 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
           `lambda: |-`  
                  `return (((100 - id(humidity).state) / 100.0) * (0.6108 * exp((17.27 * id(temperature).state) / (id(temperature).state + 237.3))));`
+
+    6. Chill Division have a custom SHT45 PCB available for this, so [get in touch](https://chilldivision.co.nz/contact.html) for details.
 
 17. An ENV Sensor should be used for Temperature, Humidity, and VPD calculations where CO2 sensing is not required.
 
@@ -457,6 +463,8 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
 40. Carbon filter efficacy varies greatly, and oftentimes the cheapest carbon filters will not adequately remove odour. Use of well renowned name-brand filters, such as AC Infinity or Mountain Air is recommended.
 
+    1. Carbon filters should be replaced at least annually, or sooner where any odour becomes noticeable.
+
 ### **Venting air out**
 
 41. Venting air out of the room is not specifically required, and a grow space that is fully-sealed in every way possible is strongly recommended. However, some growers may opt for a nightly air exchange to avoid unwanted effects such as an ethylene build-up, or using it as a chance to reset the room environmentals.
@@ -555,17 +563,17 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
 ## Lighting
 
-63. Pure LED grow lighting is recommended for photosynthetic lighting arrangements. Although some experienced growers may opt for mixed 50/50 lighting of LED\<\>HPS ratios, it is not suggested for new builds until the grower has more experience with the unique opportunities and challenges it presents, as well as integration of HPS controls into an automation system.
+64. Pure LED grow lighting is recommended for photosynthetic lighting arrangements. Although some experienced growers may opt for mixed 50/50 lighting of LED\<\>HPS ratios, it is not suggested for new builds until the grower has more experience with the unique opportunities and challenges it presents, as well as integration of HPS controls into an automation system.
 
-64. LED grow lighting should be primarily selected based on both CRI (Color Rendering Index) and diode efficacy.
+65. LED grow lighting should be primarily selected based on both CRI (Color Rendering Index) and diode efficacy.
 
     1. Although some spectrum of lighting such as blurple has historically been viewed as “all the plant needs”, it makes it significantly harder for a skilled cultivator to observe what is taking place with the plants, early observation of nutrient deficiency or toxicity, and pests or bugs. As such a more balanced spectrum is usually beneficial.
 
     2. A CRI of 85+ should be sought for LED lighting fixtures, as opposed to the off-balance CRI of \~20-25 for most HPS lights.
 
-65. LED grow lighting should be hung sufficiently above the canopy such that there will be minimal issues from radiant heat. Ideally this would be \>450mm above where the top-most buds will be.
+66. LED grow lighting should be hung sufficiently above the canopy such that there will be minimal issues from radiant heat. Ideally this would be \>450mm above where the top-most buds will be.
 
-66. A PAR analysis should take place to ensure a consistent hang-distance between fixtures. The optimal lighting hanging height vs distance from the next fixture will vary for every individual fixture, depending on factors such as diode type, bar layout, diode efficacy, lensing and other waterproofing, and physical footprint of the fixture.
+67. A PAR analysis should take place to ensure a consistent hang-distance between fixtures. The optimal lighting hanging height vs distance from the next fixture will vary for every individual fixture, depending on factors such as diode type, bar layout, diode efficacy, lensing and other waterproofing, and physical footprint of the fixture.
 
     1. When hung optimally, there should be minimal “drop off” or “hot spots” between fixtures.
 
@@ -573,7 +581,7 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
     3. Alternatively a 750w LED could be used for a 1.0\*1.0 up to a 1.2\*1.2 area, again depending on the fixture, any diode lenses etc
 
-67. Consideration should be given to upper-canopy vs lower-canopy PAR levels. To calculate the Photosynthetically Active Radiation (PAR) from a lighting fixture at different distances, you can use the inverse square law. This law states that the intensity of light is inversely proportional to the square of the distance from the light source.
+68. Consideration should be given to upper-canopy vs lower-canopy PAR levels. To calculate the Photosynthetically Active Radiation (PAR) from a lighting fixture at different distances, you can use the inverse square law. This law states that the intensity of light is inversely proportional to the square of the distance from the light source.
 
     1. The formula to calculate the PAR at a second distance (usually lower-canopy) based on a measurement at a first distance (canopy top) is:  
        PAR₂ = PAR₁ × (distance₁ / distance₂)²
@@ -582,17 +590,17 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
     3. Similarly, with the same PAR₁ of 1200µmol/m²/s measured at 60cm, the lower-canopy PAR₂ at 95cm would be `1200 × (60/95)²` = 479µmol/m²/s. This shows why hanging LEDs at a higher level and running at a higher power output can be beneficial for canopy penetration.
 
-68. Additional consideration should be given to any movable isles / tables where the canopy may be, so that the PAR is evenly distributed regardless of where the tables are left situated.
+69. Additional consideration should be given to any movable isles / tables where the canopy may be, so that the PAR is evenly distributed regardless of where the tables are left situated.
 
-69. All fixtures should be tested prior to committing to a whole room fit-out, to ensure that any 0-10v ADC or other PWM signal control is compatible with the automation system.
+70. All fixtures should be tested prior to committing to a whole room fit-out, to ensure that any 0-10v ADC or other PWM signal control is compatible with the automation system.
 
     1. Although lights may be individually controlled, usually a “whole of room” daisy-chain is sufficient, as individual lights are almost never dimmed independently across a consistent and even canopy.
 
 ### **Room lighting**
 
-70. Additional room lighting may be installed above the LED grow lights, or in areas of the room which may not be directly illuminated by the LED grow lights.
+71. Additional room lighting may be installed above the LED grow lights, or in areas of the room which may not be directly illuminated by the LED grow lights.
 
-71. Care must be taken to select smart-lighting that can be remotely controlled alongside the LED grow lights. This may take the form of [Philips Hue LEDs](https://www.pbtech.co.nz/product/BULPHS094801/Philips-HUE094801-Hue-Akari-90MM-75W-Colour-Recess), or, a [Zemismart Zigbee smart-relay light switch](https://www.ozsmartthings.com.au/products/zigbee-push-switch-2-gang-white).
+72. Care must be taken to select smart-lighting that can be remotely controlled alongside the LED grow lights. This may take the form of [Philips Hue LEDs](https://www.pbtech.co.nz/product/BULPHS094801/Philips-HUE094801-Hue-Akari-90MM-75W-Colour-Recess), or, a [Zemismart Zigbee smart-relay light switch](https://www.ozsmartthings.com.au/products/zigbee-push-switch-2-gang-white).
 
     1. Color changing LEDs like Philips Hue may be beneficial over a smart-relay light switch for including additional effects, such as changing the color to red and pulsing on/off for alerts when CO2 levels are too high.
 
@@ -600,27 +608,27 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
 ### **Undercanopy lighting**
 
-72. Undercanopy lighting should be employed to aid in meeting the European Pharmacopoeia 11.5th Edition [Cannabis Flower (Cannabis flos) monograph](https://dl.novachem.com.au/files/Ph%20Eur%203028%20Cannabis%20flos.pdf) requirements, whereby the stated label claim must not be exceeded by \+/- 10%. Having LED grow lights specifically set under the canopy aiming upwards at the lower parts of the plant can help to minimize the PAR spread from canopy top to bottom. This has a very direct impact on a plants’ ability to reach peak cannabinoid levels.
+73. Undercanopy lighting should be employed to aid in meeting the European Pharmacopoeia 11.5th Edition [Cannabis Flower (Cannabis flos) monograph](https://dl.novachem.com.au/files/Ph%20Eur%203028%20Cannabis%20flos.pdf) requirements, whereby the stated label claim must not be exceeded by \+/- 10%. Having LED grow lights specifically set under the canopy aiming upwards at the lower parts of the plant can help to minimize the PAR spread from canopy top to bottom. This has a very direct impact on a plants’ ability to reach peak cannabinoid levels.
 
-73. As with over-canopy LED grow lighting, priority should be given to the CRI. Although red spectrum and far-red is more efficient as canopy penetration, an off-balance CRI can cause issues for the growers observing the plants with diagnosing any issues that may arise.
+74. As with over-canopy LED grow lighting, priority should be given to the CRI. Although red spectrum and far-red is more efficient as canopy penetration, an off-balance CRI can cause issues for the growers observing the plants with diagnosing any issues that may arise.
 
-74. All undercanopy LED bars should be dimmable and able to be daisy-chained. This is due to the lighting needing to be at a lower PAR level when initially employed during the second week of the flowering photoperiod.
+75. All undercanopy LED bars should be dimmable and able to be daisy-chained. This is due to the lighting needing to be at a lower PAR level when initially employed during the second week of the flowering photoperiod.
 
     1. Where they cannot be dimmed, a single relay to control each tables LEDs may be employed as a secondary measure.
 
     2. Daisy chaining allows for a single plug to control all of a tables’ undercanopy LEDs, which is important when the lights are moving with the tables.
 
-75. Stands should be installed for the undercanopy LED bars to keep them slightly elevated off the drain trays, and not directly touching any coco pots or rockwool cubes.
+76. Stands should be installed for the undercanopy LED bars to keep them slightly elevated off the drain trays, and not directly touching any coco pots or rockwool cubes.
 
-76. Most undercanopy fixtures are sufficiently powerful at 100w \-\> 150w when raised \~350mm off the drain tray.
+77. Most undercanopy fixtures are sufficiently powerful at 100w \-\> 150w when raised \~350mm off the drain tray.
 
 ## Tables, isles and plant density
 
-77. Moveable tables that hold the drain-trays are often preferred over fixed tables / isles, in order to maximize the amount of canopy space per-room.
+78. Moveable tables that hold the drain-trays are often preferred over fixed tables / isles, in order to maximize the amount of canopy space per-room.
 
     1. This may not be the case where mains-power supply (Such as a 3-phase 60A capacity) is more restrictive than physical floorspace footprint.
 
-78. Consideration should be given to plant access when determining table width. A 1.5m wide drain tray is easily divisible by 3x plants each having a 50cm x 50cm space, however this places the middle plants at a 75cm distance from the isle which will greatly reduce the growers ability to interact with and defoliate the plant.
+79. Consideration should be given to plant access when determining table width. A 1.5m wide drain tray is easily divisible by 3x plants each having a 50cm x 50cm space, however this places the middle plants at a 75cm distance from the isle which will greatly reduce the growers ability to interact with and defoliate the plant.
 
     1. For this reason a 1.2m wide tray should be considered the upper limit where possible.
 
@@ -630,15 +638,19 @@ Note: M5Stack have marked the ENV.IV unit as End of Life, and have returned to p
 
         2. A plant density of 500x500 is the lower recommended limit of plant density being 4 plants per-sqm. 600x600 (3 per-sqm) is not recommended due to the size of the plants being used for the substrate, a higher density is almost always a better option.
 
-79. Tables should be placed in such a way that a grower can access them from all four sides at all times.
+80. Tables should be placed in such a way that a grower can access them from all four sides at all times.
 
     1. If the tables are moveable then permanent access to all sides is not necessary, e.g. one face of a table is up against a wall when moved to one extreme.
 
-    2. Isles and walk spaces should be sized as per §2.2.1 (minimum 800mm, 1200mm preferable).
+    2. Isles and walk spaces should be sized as per §2.2.1 (minimum 850mm, 1200mm preferable).
 
-80. Once the table width has been determined, drain trays can then be ordered to match the desired width / length.
+81. Once the table width has been determined, drain trays can then be ordered to match the desired width / length.
 
     1. Shorter drain trays may be connected to each other lengthways, however a single full length table is preferable.
+
+## Production scheduling
+
+82. A whiteboard should be installed for each room to help with production scheduling, such as the cultivar, the day of the cycle, and upcoming tasks like defoliation or harvest. These are usually best placed on the outside of the room, so that staff can see where things are at without needing to go in.
 
 # 3. Irrigation system
 
@@ -816,7 +828,7 @@ A dedicated and isolated nursery area is the foundation of a clean and productiv
 
 The drying area is a critical environment where the quality, aroma, and preservation of the final product are determined. This space must be designed for absolute and precise control over temperature and humidity to ensure a slow, even, and gentle drying process, which is essential for preserving terpenes and preventing mold.
 
-1. The room must be completely sealed, light-proof, and equipped with its own dedicated, and preferably redundant, air conditioning and dehumidification units. These systems must be capable of maintaining a consistent temperature of approximately 16 degrees Celsius and a relative humidity of 60-65 percent without significant fluctuations.
+1. The room must be completely sealed apart from its filter box (see §5.7), light-proof, and equipped with its own dedicated, and preferably redundant, air conditioning and dehumidification units. These systems must be capable of maintaining a consistent temperature of approximately 16 degrees Celsius and a relative humidity of 60-65 percent without significant fluctuations.
 
 2. Air circulation is important for preventing mold, but it must be gentle. No fans should ever blow directly onto the hanging plants as this will cause them to dry too quickly. The ventilation system should be designed to create slow, gentle, and indirect airflow throughout the entire room, ensuring a consistent environment for all plants.
 
@@ -831,6 +843,10 @@ The drying area is a critical environment where the quality, aroma, and preserva
 5. Sizing a drying room can be difficult, but it should never need to be larger than a single flower-room. Plants can often be hung in a multi-tiered solution, however movement around the plants for staff needs to be considered, coupled with the ability for air to be moved around the plants without directly blowing on them, and humidity removed from the room.
 
 6. As a rule of thumb, single-tier drying (plants hung in a single layer) needs roughly the same floor area as the flowering canopy it serves — the industry guidance is that whole plants take up much the same space drying as they did growing, as they do not shrink significantly when cut. Where plants are hung in a multi-tiered / stacked configuration, this can be reduced to approximately half of the flowering canopy area, or less. The 20sqm drying allocation in the §2 floorplan estimates assumes such a multi-tiered layout serving ~40-50sqm of canopy; if single-tier drying is preferred, allocate correspondingly more space.
+
+7. The drying room should be run at a negative pressure, with make-up air drawn in through a filter box containing a HEPA filter (or MERV 16+, as per §2.39). This keeps odour contained, while ensuring any air entering the room has been filtered to help control microbial contamination of the drying flower.
+
+8. The drying room should have its own SHT45 sensor(s) for temperature, humidity and VPD (see §2.16), so that it can be monitored remotely without staff needing to go in.
 
 # 6. Data network
 
@@ -852,9 +868,9 @@ A reliable data network is an absolute necessity, with local control of all devi
 
     1. For more compact facilities where the floorplan permits, a more centralized U7-LR (Long Range) may be used, but consideration should be given to the physical location of the device ensuring it is as central as possible.
 
-5. A 48-port network switch such as the [ES-48-500W](https://www.pbtech.co.nz/product/NETUBI1092/) should be obtained for the primary network switch.
+5. A 48-port network switch such as the [USW-48-POE](https://www.pbtech.co.nz/product/SWHUBI848240/) should be obtained for the primary network switch.
 
-    1. Even a small facility will likely exceed a 24-port switch capacity such as a [US-24-250W](https://www.pbtech.co.nz/product/SWHUBI1004/), with a dozen cameras, DVR, WiFi access points, EdgeRouter, a larger 48-port is the next size up and provides room for expansion.
+    1. Even a small facility will likely exceed a 24-port switch capacity such as a [USW-24-POE](https://www.pbtech.co.nz/product/SWHUBI824120/), with a dozen cameras, DVR, WiFi access points, EdgeRouter, a larger 48-port is the next size up and provides room for expansion.
 
     2. Alternatively two large switches like this can be used with a small uplink cable between them.
 
@@ -864,13 +880,15 @@ A reliable data network is an absolute necessity, with local control of all devi
 
     1. Due to the nature of the devices likely to be running on the network, such as IoT devices operating at speeds that can be measured in “bps”, there is not likely to be a need for anything faster than 10/100 Fast Ethernet except for between servers on the primary / central network switch.
 
+8. Home Assistant should be installed on bare metal, on its own dedicated machine, rather than virtualized under a hypervisor. A hypervisor is one more thing to update, one more thing that can break, and one more thing standing between you and getting your automations back after a power cut. Passing USB devices such as a Zigbee coordinator through to a virtual machine is also a common source of problems.
+
 # 7. Electrical wiring
 
 The electrical system in a cultivation facility must be designed and installed with safety, reliability, and future expansion in mind. All work must be completed by a qualified and licensed electrician to the highest commercial standards, accounting for the unique high-load and high-humidity environment of a grow facility.
 
 1. All electrical outlets and fixtures inside the grow rooms must be installed on the ceiling or as high on the walls as possible. This strategic placement minimizes the risk of contact with water during irrigation, foliar spraying, or room cleaning.
 
-2. All power outlets and fittings should be [waterproof (IP65 rated or higher)](https://www.bunnings.co.nz/hpm-10a-aqua-double-surface-mount-powerpoint_p0095484).
+2. All power outlets and fittings should be [weatherproof (IP53 rated or higher)](https://www.bunnings.co.nz/hpm-10a-aqua-double-surface-mount-powerpoint_p0095484).
 
 3. High-load equipment, particularly lighting arrays and dehumidifiers, should be wired to their own dedicated circuits or split across multiple circuits, with appropriate amperage ratings to prevent overloads and ensure stable, continuous operation.
 
@@ -917,6 +935,8 @@ An integrated audio system is crucial for audible alerts. If a CO2 sensor is rea
 6. General "smart" speakers are not recommended due to requiring an internet connection and depending on a cloud provider. Bluetooth speakers are also problematic, often not working at any suitable range, difficulty receiving audio from a server, and usually shutting off entirely when no audio has been played for a few minutes.
 
 # Changelog
+
+* v3.1 additions. Added a production scheduling whiteboard for each room (§2.82), a carbon filter replacement interval (§2.40.1), an SHT45 for VPD in place of the SCD4x's built-in humidity sensor (§2.16), negative pressure with a filter box and SHT45 sensors for the drying room (§5.1, §5.7, §5.8), and running Home Assistant on bare metal (§6.8). The Dead-End Open Path guidance now lives in §2.11, updated to the C/AS2 2nd Edition (Table 3.3.1.1) along with minimum escape route widths, and the minimum aisle width was raised from 800mm to 850mm to match (§2.2.1, §2.80.2). The Ravenseal RP10Si link was updated (§2.8), and links to the RP10Si and RP8Si seals were added to §1.20. The primary network switch recommendation is now the USW-48-POE, as the ES-48-500W has been discontinued, and the 24-port example is now the USW-24-POE (§6.5). Chapter 2 item numbers were corrected from Lighting onwards, as 2.63 had been used twice. The power outlet requirement is now IP53 or higher, in line with the weatherproof double outlets available in New Zealand (§7.2). The Introduction now notes these are not GACP or GMP SOPs.
 
 * v3.0.1 version alignment with the suite release. No changes to this document's content.
 

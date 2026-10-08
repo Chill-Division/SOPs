@@ -3,7 +3,7 @@
 **Cultivation Facility**
 Security Policies and Procedures for soilless media facility
 
-v3.0.1
+v3.1
 "The complete set"
 
 ---
@@ -24,6 +24,10 @@ the Site Design Guidelines (Chapter 1) is intentionally mirrored between that
 document and this one, as the information is crucial both for planning a site and
 for keeping it secure.
 
+These are not GACP or GMP SOPs, and they won't get you either certification.
+Neither is needed under NZMQS for a Cultivator to bring product through
+verification, when it's dried / packed / verified in a 3rd party GMP facility.
+
 Submitting these procedures as part of a licence application does not, by itself,
 result in a licence being granted. The Medicinal Cannabis Agency assesses the
 totality of the security arrangements, and what matters most is the
@@ -41,17 +45,19 @@ Copyright © Chill Division. Licensed under [CC BY-SA 4.0](https://creativecommo
 
 These procedures will aid in selecting a premise for lease to cultivate in, along with ensuring that the appropriate amendments to the facility are made to ensure the safety of cannabis.
 
-When searching for a lease, a facility owner should be mindful of the amount of time the lease is likely to last, and so seeking a 4-5 year lease term, with 2+2 ROR (Right of Refusal) is often desirable. If a facility owner is seeking to have 50-60sqm of canopy space, a 160-200sqm warehouse lease is likely going to be sufficient, with further optimizations able to be had by an experienced owner.
+When searching for a lease, a facility owner should be mindful of the amount of time the lease is likely to last, and so seeking a 4-5 year lease term, with 2+2 ROR (Right of Refusal) is often desirable. If a facility owner is seeking to have 50-60sqm of canopy space, a 180-240sqm warehouse lease is likely going to be sufficient, with further optimizations able to be had by an experienced operator.
 
 The Landlord of this warehouse must be willing to provide a letter to the Medicinal Cannabis Agency to include with your licence application. It must state their approval of your undertakings at the location, so it pays to be up-front with your landlord, and engage a regulatory consulting expert who can assist with ensuring a successful lease.
 
 It is also worth noting that in cases where some of these guidelines are unable to be followed, the totality of the security arrangements will be assessed by the Medicinal Cannabis Agency, and there may be flexibility in some instances. However, the assumption of oneself being “the exception to the rule” is not an optimal place to start, but rather a place whereby a regulatory consultant may be able to offer ways to make a location suitable even if it does not match 100% of the criteria from the outset.
 
 During build-out, and before the Medicinal Cannabis Agency’s site audit, Responsible Personnel should also notify the New Zealand Police of the proposed location and the nature of activities to be conducted on-site.
-### Location
-1. The premise should not be within 120m of any residential properties. This is the minimum distance to aim for. Where a prospective site cannot meet it, the location should be reviewed with a regulatory consultant on a case-by-case basis, and may still be accepted at the Medicinal Cannabis Agency’s discretion.
 
-    1. The premise should ideally have at least a 150-200m radius around the facility location whereby there are no other residential properties, unless the house is that of the owner of the cultivation facility or similar.
+### Location
+
+1. The premise should not be within 120m of any residential properties. This is the minimum distance to aim for. Where a prospective site cannot meet it, the location should be reviewed with a regulatory consultant on a case-by-case basis, and *may* still be accepted at the Medicinal Cannabis Agency’s discretion.
+
+    1. The premise should ideally have at least a 150-200m radius around the facility location whereby there are no other residential properties, unless the house is that of the owner of the cultivation facility or similar. This is so that you do not impede on other residents right to quiet and peaceful enjoyment of their property.
 
     2. The premise should not be within 200m of a school, kura, kindergarten, preschool, highschool, or other place of education.
 
@@ -71,8 +77,12 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
     7. Consideration should also be given to the layout of any pre-existing warehouses, as certain rooms may be unsuitable for use for cultivation aspects due to existing doors / walkways within the facility.
 
-        1. This often includes a “lunchroom” on the externally facing wall which also has an adjacent roller door. Due to the roller door being a single barrier to entry, although there may be two doors any personnel would normally enter through via the lunchroom, additional internal barriers to entry would need to be considered
+        1. This often includes a “lunchroom” on the externally facing wall which also has an adjacent roller door. Due to the roller door being a single barrier to entry, although there may be two doors any personnel would normally enter through via the lunchroom, additional internal barriers to entry would need to be considered.
+
+        2. Consideration should also be given to the Dead-End Open Path length, as the internal walls and barriers to entry required for security can easily create long dead ends. See the Site Design Guidelines §2.11 for the limits that apply.
+
 ### General security principals
+
   The majority of these requirements will be fit-out requirements that the facility owner will have to implement, and are unlikely to be available in any pre-existing setup. These principals will guide the design of the facility.
 
 8. There should be no external signage, logos, emblems or markings anywhere on-site that relates to the company, or the nature of the business being conducted on-site
@@ -87,7 +97,7 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
     1. For any padlocks, a tumbler-PIN lock should be utilized if no other alternatives can be used, instead of a key-based lock.
 
-12. Access to any area of the site which may contain cannabis biomass must employ a method of *2-factor authentication* (Two separate factors of authorization) in order to reach any room where cannabis materials may be. This means one door may require a fingerprint whereas another requires a PIN.
+12. Access to any area of the site which may contain cannabis biomass must employ a method of *2-factor authentication* (Two separate factors of authorization) in order to reach any room where cannabis materials may be. This means an initial exterior building door may require a fingerprint and a second door to access a grow room requires a PIN.
 
 13. 2-factor authentication methods may include but are not limited to a combination of a PIN \+ fingerprint, PIN \+ key fob, fingerprint \+ key fob, PIN \+ NFC authentication method or other similar security arrangement. This ensures that should a Key Fob / cellphone be lost, stolen, or go missing, its use would not permit any unauthorized access to the site.
 
@@ -103,25 +113,25 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
 18. The site must be operated in a manner such that smell does not escape to bother nearby neighbours or businesses. This may involve operating the facility at a **negative pressure** and / or **carbon filtration** for any venting of air.
 
-    1. This may also include internal scrubbing of air with carbon filtration.
-
-    2. HEPA / MERV filtration is not an acceptable method of odour control, as the filters are only designed to capture dust and other particulate matter, and only carbon filtration is acceptable for scrubbing odour.
+    1. This may also include internal scrubbing of air with carbon filtration. HEPA / MERV filtration is not an acceptable method of odour control, as the filters are only designed to capture dust and other particulate matter, and only carbon filtration is acceptable for scrubbing odour.
 
 19. To further combat odour escaping, all rooms where cannabis materials are held should be sealed with a silicon-based beading (Such as Sikaflex AT-Facade) along any gaps in wall-panels, joins, edges, skirting boards, and around drainages. This will minimize odour escape while also maximizing CO2 injection efficiency.
 
-    1. Care should be taken where any electrical / data cabling may enter the room, as well as plumbing and CO2 related penetrations.
+    1. Care should be taken where any electrical / data cabling may enter the room, as well as plumbing for fertigation / drainage, and CO2 related penetrations.
 
-20. Similarly, doors to those rooms should also be fitted with an edge / automatic door bottom sealer, such as Ravenseal RP10Si frame-seal / RP8Si door bottom automatic sealer, to prevent further odour escaping or CO2 leaking.
+20. Similarly, doors to those rooms should also be fitted with an edge / automatic door bottom sealer, such as [Ravenseal RP10Si](https://www.nzhardware.co.nz/product-group/43842-raven-rp10si-frame-seals-clear-anodised/category/6487-door-and-window-seals) frame-seal / [RP8Si](https://www.nzhardware.co.nz/product-group/4196-raven-rp8si-bottom-door-seal/category/6487-door-and-window-seals) door bottom automatic sealer, to prevent further odour escaping or CO2 leaking.
 
-    1. Alternatively where doors can be retrofit / replaced, a hermetically sealed door should be used.
+    1. Alternatively, a hermetically sealed door should be used.
 
 21. Documents such as SOPs, Floorplan etc must always include a version number. This should be in the form of Semantic Versioning (Major.Minor.Patch) format as defined by the Semantic Versioning 2.0.0 specification (semver.org), or date-based versioning as described in ISO 8601 (YYYYMMDD).
 
 22. Any floorplan provided to the Medicinal Cannabis Agency must label each internal room with its purpose (Flower1, Flower2, Nursery, Drying etc). Each physical room must then be labelled with a matching sticker / poster, on or directly adjacent to its door, so that the physical labels always align with the floorplan.
 
     1. The locations of free-standing equipment relevant to security or odour control (such as carbon / HEPA filters) should also be noted on the floorplan.
+
 ### Physical Security Arrangements
-24. If there is a fence acting as a barrier to entry, it must be sufficiently far from the other barrier to entry (such as building exterior) that it is able to stand on its own merit as a defense mechanism.
+
+24. If there is a fence acting as a barrier to entry, it must be sufficiently far from another barrier to entry (such as building exterior) that it is able to stand on its own merit as a defense mechanism.
 
     1. The fence should be of sturdy construction, such that it would stand up to a ram attempt from a vehicle.
 
@@ -129,7 +139,7 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
         1. Depending on the height, it may be suitable to also install barbed wire along the top of the fence.
 
-    3. The fence must not be able to be jimmied up from the bottom, such as with a spade or crowbar. This is especially important if it is a metal fence that doesn’t have a thick and solid bottom.
+    3. The fence must not be able to be jimmied up from the bottom, such as with a spade or crowbar. This is especially important if the fence is metal fence and does not have a thick and solid bottom.
 
     4. The fence must be of a decent height such that it is unable to be leaped over, with a minimum of 1.8m but ideally 2m+
 
@@ -163,7 +173,7 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
 33. All external doors, and any doors to rooms that may contain cannabis materials, must be fitted with a door-state sensor so that door open / close events are logged with a timestamp, and so that alerts (such as the alarm for doors remaining open for more than 60 seconds) can function.
 
-    1. Zigbee contact sensors are the most common and practical choice for this. Alternatively, wired options such as hall-effect sensors or limit-switch style sensors, attached to a PoESP32 or Atom Lite, may be used.
+    1. Zigbee contact sensors are the most common and practical choice for this. Alternatively, wired options such as hall-effect sensors or limit-switch style sensors, attached to a microcontroller may be used.
 
     2. Roller doors should also have state sensing, so that an unexpected opening outside of business hours triggers an alert.
 
@@ -179,13 +189,15 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
     2. Cameras may be installed in hallways or other functional areas where cannabis movement between rooms may be.
 
-    3. Larger rooms will likely require two or more cameras, with the primary camera having a close / unobstructed view of the room entrance, and others showing a broader perspective of the room to detect intruders / movement.
+    3. Larger rooms will likely require two or more cameras, with the primary camera having a close / unobstructed view of the room entrance, and others showing a broader perspective of the room to detect intruders / movement and prevent staff theft.
 
-36. Care should be taken when selecting a camera for any room that will have growing plants, the night-vision using far-red (iR) can interfere with plant photoperiods where the spectrum falls inside the 400-700nm PAR range.
+36. Care should be taken when selecting a camera for any room that will have growing plants, the night-vision using far-red (IR) can interfere with plant photoperiods where the spectrum falls inside the 400-700nm PAR range.
 
-    1. Cameras such as the Reolink RLC-510A or RLC-810A are recommended due to having infrared LEDs that are approx 830nm, and should not interfere with a plants photoperiod and ability to “sleep” at night.
+    1. Cameras such as the Reolink RLC-510A or RLC-810A are recommended due to having infrared LEDs that are approx 830nm, which should not interfere with a plants photoperiod and ability to “sleep” at night.
 
-    2. Cameras must be cabled and PoE-powered. Battery-operated cameras are never acceptable. Any camera selected must support at least 1280x720 resolution at 2fps or better, continuous 24/7 recording (motion detection may supplement, but never replace, continuous recording), and automatic IR for clear recording in darkness.
+    2. Cameras must be cabled and PoE-powered. Battery-operated cameras are never acceptable. Any camera selected must support at least 1280x720 resolution at 2fps or better, continuous 24/7 recording (motion detection may supplement, but never replace, continuous recording).
+
+    3. Cameras must also have automatic IR lighting for clear recording in darkness.
 
 37. Cameras must also be installed outside, facing in every possible direction of approach for a would-be intruder.
 
@@ -205,15 +217,15 @@ During build-out, and before the Medicinal Cannabis Agency’s site audit, Respo
 
     2. Where possible, a RAID-5 or RAID-1 setup is recommended for data redundancy.
 
-40. A Duress Button should be installed near all main entrances to the premises, such that if a staff member is forced to open the building, under duress or threat of physical harm / violence, they can discretely push this button upon entry.
+40. A Duress Button must be installed near all main entrances to the premises, such that if a staff member is forced to open the building under duress or threat of physical harm / violence, they can discretely push this button upon entry.
 
-    1. Having them situated near primary lighting is considered to be an optimal location. However, these buttons should be unmarked so that there is nothing to indicate that they have triggered a silent alarm notifying other responsible personnel etc.
+    1. Having them situated near primary lighting controls is considered to be an optimal location. However, these buttons should be unmarked so that there is nothing to indicate that they have triggered a silent alarm notifying other responsible personnel etc.
 
     2. A wireless Zigbee button such as a [Xiaomi / Aqara Mini Button](https://www.aliexpress.com/item/4001021237879.html) is ideal for discrete and flexible placement.
 
-    3. Alternatively, a [Mini Dual Button unit](https://github.com/Chill-Division/M5Stack-ESPHome/blob/main/Mini%20Dual%20Button%20Unit.md), or [Mechanical Key Button](https://github.com/Chill-Division/M5Stack-ESPHome/blob/main/Mechanical%20Key%20Button%20Unit.md), attached to an Atom Lite or PoESP32 may be utilized to the same effect
+    3. Alternatively, a [Mini Dual Button unit](https://github.com/Chill-Division/M5Stack-ESPHome/blob/main/Mini%20Dual%20Button%20Unit.md), or [Mechanical Key Button](https://github.com/Chill-Division/M5Stack-ESPHome/blob/main/Mechanical%20Key%20Button%20Unit.md), attached to a microcontroller may be utilized to the same effect.
 
-41. A standalone controlled-drug safe / vault is not required, as the Medicinal Cannabis Agency holds overriding jurisdiction and discretion over storage arrangements. Instead, the facility owner must ascertain the most secure room within their facility to act as the secure storage area for packaged product and any biomass staged for dispatch, and note this room on the floorplan provided to the Medicinal Cannabis Agency.
+41. A standalone controlled-drug safe / vault is not required, as the Medicinal Cannabis Agency holds discretion over biomass storage arrangements. Instead, the facility owner must ascertain the most secure room within their facility to act as the secure storage area for packaged product and any biomass staged for dispatch, and note this room on the floorplan provided to the Medicinal Cannabis Agency.
 
     1. Most facilities will find their drying or processing room to be the most suitable choice, as these rooms already meet the access control, surveillance, and environmental requirements for holding cannabis materials.
 
@@ -355,6 +367,8 @@ This same procedure applies to biowaste taken from the plants in the middle of a
 3. When emptying any vacuum / rubbish bag, ensure it is placed into the appropriate bin inside the current room, depending on if the contents contains cannabis materials or not.
 
 4. Additional care should be taken while cleaning the floor, walls, carbon / HEPA filters etc such that no contaminants / bacteria could come into contact with the plants.
+   1. Vacuums, leaf-blowers and similar equipment must not be used inside a cultivation room while there are plants in it. Too much gets kicked up into the air, and it settles straight back down onto the plants and flower.
+   2. The only exception is the wet / dry vacuum kept on standby for emergencies (Site Design Guidelines §2.5.1), such as a burst line or flood, where leaving the water would do more damage.
 
 ### 9. Scheduled / unscheduled maintenance
 
@@ -412,6 +426,8 @@ There are items such as CO2 canisters that need to be replaced as / when they ar
 
 4. Additional care shall be taken to ensure that the temperature of calibration liquid is also maintained during calibration in accordance with manufacturer guidance.
 
+5. EC truncheons and EC probes should be cleaned regularly with a small amount of Jif (or a similar mildly abrasive cleaner) rubbed on with a finger, or wiped with a paper towel, then rinsed well with clean water before use or calibration.
+
 ## Site access / security
 
 ### 11. Inspections and testing
@@ -449,6 +465,8 @@ There are items such as CO2 canisters that need to be replaced as / when they ar
 3. A regular backup regime should be conducted with off-site backups for critical data, such as records of cannabis materials. This is to permit a full and complete restore of records in the event of a catastrophic "cloud" failure.
 
 4. All cannabis tracking related records shall be kept for a minimum of 5 years time, with the expectation of longer record-keeping being possible. This includes any digital documents, as well as scanned / photographed records. If tracking is taking place within the GRACe Portal, this can be included in a properly defined Home Assistant backup regime for offsite storage, however it is not the default and must be configured by the *Responsible Person*.
+
+5. Home Assistant backups should be made using Home Assistant's own built-in backup feature, rather than by taking snapshots at the hypervisor level. These backups must be stored off-site, such as through the Google Drive, OneDrive or Synology backup locations, so that records held in the GRACe Portal meet the off-site backup and retention requirements above.
 
 ### 13. General site standards / expectations
 
@@ -856,6 +874,8 @@ Please scan / photo upon receipt of goods, and send a copy to the sender's email
 ---
 
 ## Changelog
+
+* v3.1 additions. Chapter 1 was brought back into line with the Site Design Guidelines, including the updated Dead-End Open Path guidance and links to the Ravenseal RP10Si and RP8Si seals (§1.20). Added a ban on vacuums and leaf-blowers in cultivation rooms while plants are in them (§8.4.1), cleaning of EC truncheons and probes (§10.5), and Home Assistant backup requirements (§12.5). The Introduction now notes these are not GACP or GMP SOPs.
 
 * v3.0.1 
   * Updates to §6 Disposal of biomass, following feedback by the Medicinal Cannabis Agency. Clarifies that cannabis waste bins must always remain locked whenever they hold waste material and are not in immediate use.

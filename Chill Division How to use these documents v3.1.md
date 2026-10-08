@@ -3,7 +3,7 @@
 **Cultivation Facility**
 How to use these documents
 
-v3.0.1
+v3.1
 "The complete set"
 
 ---
@@ -57,9 +57,15 @@ These SOPs are *NOT* designed to get you GACP or GMP certified. Those certificat
 
 However, some exporters will want GACP as part of the receiving jurisdictions requirements. You may need to obtain further SOPs from anybody who wants you to have GACP certification.
 
+## What these documents don't cover
+
+These SOPs do not cover health and safety. As the PCBU (Person Conducting a Business or Undertaking) under the Health and Safety at Work Act 2015, you are responsible for undertaking your own risk assessments and managing the hazards at your own site, such as CO2, chemicals, electrical hazards and working at heights. Council requirements, such as building consent, resource consent and trade waste, are also outside the scope of these documents and should be confirmed with your local council.
+
 ---
 
 ## Changelog
+
+* v3.1 added a What these documents don't cover section, for health and safety (PCBU) and Council requirements.
 
 * v3.0.1 version alignment with the suite release. No changes to this document's content.
 

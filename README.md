@@ -23,12 +23,12 @@ here.)
 
 | Document | Status | Purpose |
 | --- | --- | --- |
-| **Site Design Guidelines** (`v3.0.1`) | Current | Site selection, build, fit-out and design of the facility. |
-| **Cultivation Procedures** (`v3.0.1`) | Current, from v2.6.1 §1-12 | Day-to-day growing: propagation, veg, flower, harvest, drying, trimming, IPM, nutrients, testing. |
-| **Security Policies & Procedures** (`v3.0.1`) | Current, from v2.6.1 §13-37 | Access control, surveillance, staff / visitor procedures, records, disposal, inward / outward goods. |
+| **Site Design Guidelines** (`v3.1`) | Current | Site selection, build, fit-out and design of the facility. |
+| **Cultivation Procedures** (`v3.1`) | Current, from v2.6.1 §1-12 | Day-to-day growing: propagation, veg, flower, harvest, drying, trimming, IPM, nutrients, testing. |
+| **Security Policies & Procedures** (`v3.1`) | Current, from v2.6.1 §13-37 | Access control, surveillance, staff / visitor procedures, records, disposal, inward / outward goods. |
 | **Advertising SOPs** (`v3.1`) | In progress, not yet published on the website | Advertising and promotion within the New Zealand regulatory constraints. |
-| **Automations Guide** (`v3.0.1`, bonus) | Current, from a working HA config | How to set up the automations referenced in the other docs: sensors, Home Assistant helpers, ESPHome vs Home Assistant logic. |
-| **How to use these documents** (`v3.0.1`) | Framework only, content to come | The basics for new readers: what these documents are, how to read them, and where to start. |
+| **Automations Guide** (`v3.1`, bonus) | Current, from a working HA config | How to set up the automations referenced in the other docs: sensors, Home Assistant helpers, ESPHome vs Home Assistant logic. |
+| **How to use these documents** (`v3.1`) | Current | The basics for new readers: what these documents are, how to read them, and where to start. |
 
 A licence application is expected to include the Site Design, Cultivation, and
 Security documents together. The first chapter (building/security requirements)

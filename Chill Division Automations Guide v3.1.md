@@ -3,7 +3,7 @@
 **Cultivation Facility**
 Automations Guide
 
-v3.0.1
+v3.1
 "The complete set"
 
 ---
@@ -26,6 +26,10 @@ your own (see [Generic entity names](#appendix-generic-entity-names)).
 Nothing here overrides the other three documents. Where an automation enforces a
 requirement (photoperiod, door alarms, CO2 safety) the requirement itself lives
 in the relevant SOP.
+
+These are not GACP or GMP SOPs, and they won't get you either certification.
+Neither is needed under NZMQS for a Cultivator to bring product through
+verification, when it's dried / packed / verified in a 3rd party GMP facility.
 
 All terminology follows [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119)
 (MUST / SHOULD / MAY).
@@ -257,7 +261,8 @@ Wire everything back over PoE where possible (see Site Design Guidelines §2).
 | Role | Suggested hardware | Provides (entity) |
 | --- | --- | --- |
 | Room microcontroller | [M5Stack PoESP32](https://shop.m5stack.com/products/esp32-ethernet-unit-with-poe) (Ethernet + PoE) | Hosts the sensors / relays below and computes VPD on-device |
-| CO2 + temp / humidity | [SCD40 CO2 unit](https://shop.m5stack.com/products/co2-unit-with-temperature-and-humidity-sensor-scd40) | `sensor.growroom_co2`, `..._vpd_canopy` |
+| CO2 | [SCD40 CO2 unit](https://shop.m5stack.com/products/co2-unit-with-temperature-and-humidity-sensor-scd40) | `sensor.growroom_co2` |
+| Temp / humidity (canopy VPD) | SHT45 ([Chill Division custom PCB](https://chilldivision.co.nz/contact.html)) | `sensor.growroom_vpd_canopy` |
 | Temp / humidity / pressure | ENV sensor (SHT + pressure) | `sensor.growroom_vpd_top`, room pressure |
 | Relays (solenoids, pump, humidifier, CO2) | [M5Stack 4-Relay unit](https://shop.m5stack.com/products/4-relay-unit) / SSR | `switch.growroom_*` relays |
 | Substrate moisture / EC | THC-S RS485 substrate sensor | `sensor.growroom_substrate_vwc`, `..._pwec` |
@@ -271,7 +276,7 @@ Wire everything back over PoE where possible (see Site Design Guidelines §2).
 > ⚠ **pH / EC probes:** some facilities add inline pH / EC probes (e.g. Atlas
 > Scientific) on the reservoir. None of the core automations below depend on them.
 > Treat reservoir pH / EC as monitoring / dashboards unless you build your own
-> control loop, and calibrate regularly (see Cultivation Procedures §21).
+> control loop, and calibrate regularly (see Security Policies & Procedures §10).
 
 ### How to add an automation through the UI
 
@@ -1473,6 +1478,8 @@ run more than one (`_gr1`, `_gr2`, …).
 ---
 
 ## Changelog
+
+* v3.1 updates. The sensor table now uses an SHT45 for canopy temperature / humidity / VPD, in line with the Site Design Guidelines, and the calibration cross-reference now points at the Security Policies & Procedures §10. The Introduction now notes these are not GACP or GMP SOPs.
 
 * v3.0.1 version alignment with the suite release. No changes to this document's content.
 

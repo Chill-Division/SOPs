@@ -3,7 +3,7 @@
 **Cultivation Facility**
 Cultivation Procedures for soilless media facility
 
-v3.0.1
+v3.1
 "The complete set"
 
 ---
@@ -20,6 +20,10 @@ v3.0.1
 These Cultivation Procedures work together with the **Chill Division Site Design
 Guidelines** and the **Chill Division Security Policies & Procedures**. A licence
 application should include all three documents.
+
+These are not GACP or GMP SOPs, and they won't get you either certification.
+Neither is needed under NZMQS for a Cultivator to bring product through
+verification, when it's dried / packed / verified in a 3rd party GMP facility.
 
 Several supporting processes referenced throughout this document (biomass
 disposal, cannabis record keeping, the Record Book and Chain of Custody, and the
@@ -126,6 +130,7 @@ Cuttings are taken with an expected 80% retention rate, with 20% expected to eit
    1. Portable sensors may be used in the dome itself for remote observation and monitoring of the dome, however care should be taken to ensure that the device can function in humidity levels as high as 99%RH.
    2. If a small sensor is to be placed inside of the clone dome, it should be appropriately cleaned / sanitized first.
    3. The room itself should never exceed 26C as this will impact the domes ability to be controlled by the heat mat.
+   4. Where there is more than one heat mat, each heat mat should be labelled along with the thermostat / controller it is connected to, so that staff can quickly identify which controller to check or adjust.
 
 7. The clone dome that the cuttings are to be placed into should be labelled with the cultivar name and the date that the cuttings were taken. This label may take the form of tape / sticker attached to the dome, or permanent marker directly labelling the outside of the clone dome.
 
@@ -288,29 +293,35 @@ Defoliation should also be undertaken to ensure a more harmonious application of
 
 8. No further IPM / foliar spraying should take place after the 21st day of flowering when buds have begun to form, with the possible exception of a light PAA antimicrobial treatment.
 
-9. The VPD should be the primary number that is watched / monitored, with temperature to a certain extent being secondary, and the humidity only used as a measurement to calculate VPD.
+9. Keep your hands off the buds. It's tempting to give them a squeeze while you're walking the room to see how they're coming along, but every touch knocks trichomes off and adds to the microbial load. If touching can be avoided, it should be.
 
-10. Perform checks daily of trichome ripeness levels throughout the last 14 days of *expected* flowering cycles, making plans for harvesting.
+10. The VPD should be the primary number that is watched / monitored, with temperature to a certain extent being secondary, and the humidity only used as a measurement to calculate VPD.
 
-11. Where possible, a "finishing fade" should be undertaken during the last 7-14 days (cultivar dependent). This finishing fade contributes to the final "stress" of the plant to increase cannabinoid content as well as other secondary metabolites.
+11. Perform checks daily of trichome ripeness levels throughout the last 14 days of *expected* flowering cycles, making plans for harvesting.
+
+12. Where possible, a "finishing fade" should be undertaken during the last 7-14 days (cultivar dependent). This finishing fade contributes to the final "stress" of the plant to increase cannabinoid content as well as other secondary metabolites.
     1. This should be the removal of only nitrogen from the feed while maintaining consistent ratios of other micro and macronutrients.
 
-12. A "full flush" with just water should never be undertaken, as this is one of the leading causes of botrytis and bud rot.
+13. In the final week of flower, go over the plants one last time and remove any popcorn nugs that were missed during defoliation. Left on, they get harvested with everything else and drag down the overall active ingredient levels at testing.
+
+14. A "full flush" with just water should never be undertaken, as this is one of the leading causes of botrytis and bud rot.
 
 ### Crop steering
 
 To achieve the highest potential of any given cultivar, the Cultivator must manipulate the rootzone environment through strategic irrigation events in the flowering cycle. This process, known as Crop Steering, uses moisture levels / Volumetric Water Capacity (vWC) and Electrical Conductivity (EC) to signal the plant to grow either vegetatively (foliage and roots) or generatively (flowers and secondary metabolites).
 
-13. Irrigation throughout the "Lights On" cycle is divided into three primary phases to manage the relationship between Volumetric Water Content (VWC%) and Substrate EC:
+Crop steering is preferred over a fixed watering schedule, as it gets the maximum out of every plant. It should be automated wherever possible. Hand-watering to a crop-steering plan is hard to do consistently, and consistency is the whole point. The [HA-Irrigation-Strategy](https://github.com/Chill-Division/HA-Irrigation-Strategy) repository on the Chill Division GitHub covers how to set this up.
+
+15. Irrigation throughout the "Lights On" cycle is divided into three primary phases to manage the relationship between Volumetric Water Content (VWC%) and Substrate EC:
     - **Phase 1 (P1):** *The "Saturating" phase*. Beginning 1-2 hours after lights turn on to allow for "transpiration before irrigation". Use multiple small shots (2-6% of substrate volume) spaced 15-30 minutes apart until the target runoff is achieved. This avoids "channeling" where water bypasses the medium.
     - **Phase 2 (P2):** *The "Maintenance" phase*. Maintenance shots are used to keep the VWC% at a consistent peak level throughout the remainder of the light cycle.
     - **Phase 3 (P3):** *The "Dryback" phase*. No irrigation occurs from the final P2 shot until the following day's P1 begins. This allows roots to breathe and prevents pathogens like root rot from developing.
 
-14. Using a substrate sensor such as a THC-S, Teros12 or similar equivalent, insert it at the manufacturer recommended height into the side of the substrate. Multiple sensors should be used throughout each grow room in varying places such as different tables, near the start / end of the table etc.
+16. Using a substrate sensor such as a THC-S, Teros12 or similar equivalent, insert it at the manufacturer recommended height into the side of the substrate. Multiple sensors should be used throughout each grow room in varying places such as different tables, near the start / end of the table etc.
     1. The exact height / location on the side of the substrate will vary, depending on if the substrate is coco coir vs rockwool, coupled with the "pot" size.
     2. Ensure that if using coco coir, there is no perlite or vermiculite added, as these will cause drastically incorrect readings.
 
-15. The following table should be used for dryback targets:
+17. The following table should be used for dryback targets:
 
     | Growth Stage | Strategy | Target Substrate EC | Target P3 Dryback |
     | :---- | :---- | :---- | :---- |
@@ -324,17 +335,17 @@ To achieve the highest potential of any given cultivar, the Cultivator must mani
     - **Generative Steering (Flower Stretch/Finish):** If your moisture sensor reads 70% VWC at full saturation, a 50% relative dryback would bring the reading down to 35% VWC before the first shot the next morning.
     - **Vegetative Steering (Veg/Flower Bulk):** If you are at 70% VWC at peak saturation, a 30% relative dryback would bring the reading to 50% VWC.
 
-16. To promote vegetative growth (encouraging bud swell and taller plants), use larger irrigation shots and shorter overnight drybacks (30-40%). This increases runoff and lowers the substrate EC.
+18. To promote vegetative growth (encouraging bud swell and taller plants), use larger irrigation shots and shorter overnight drybacks (30-40%). This increases runoff and lowers the substrate EC.
 
-17. To promote generative growth (encouraging quicker flower site formation and compact plants or stacking), use smaller irrigation shots and larger overnight drybacks (40-50%). This restricts runoff and increases substrate EC, a technique known as EC Stacking.
+19. To promote generative growth (encouraging quicker flower site formation and compact plants or stacking), use smaller irrigation shots and larger overnight drybacks (40-50%). This restricts runoff and increases substrate EC, a technique known as EC Stacking.
 
-18. **NOTE:** A 1-5% dryback should occur after lights turn on but before the first P1 shot to ensure the plant is actively transpiring (This is known as the P0 time).
+20. **NOTE:** A 1-5% dryback should occur after lights turn on but before the first P1 shot to ensure the plant is actively transpiring (This is known as the P0 time).
 
-19. If the substrate is not drying out overnight to the desired amount, irrigation automations should be amended such that the P2 phase finishes earlier in the day allowing for a deeper dryback overnight.
+21. If the substrate is not drying out overnight to the desired amount, irrigation automations should be amended such that the P2 phase finishes earlier in the day allowing for a deeper dryback overnight.
 
-20. The Cultivator should use a Substrate Sensor to monitor vWC% and Pore Water EC (pwEC) in real-time, as opposed to manual insertion of sensors and hand-testing. If the Cultivator is in doubt, add more sensors to the grow, and have the sensors on a mix of largest and smallest plants.
+22. The Cultivator should use a Substrate Sensor to monitor vWC% and Pore Water EC (pwEC) in real-time, as opposed to manual insertion of sensors and hand-testing. If the Cultivator is in doubt, add more sensors to the grow, and have the sensors on a mix of largest and smallest plants.
 
-21. As required, manually test the runoff by bringing the substrate to field capacity, then manually performing another irrigation event, such as 50-100mL and capture that 50-100mL runoff from the plant into a tray such as a tinfoil baking tray.
+23. As required, manually test the runoff by bringing the substrate to field capacity, then manually performing another irrigation event, such as 50-100mL and capture that 50-100mL runoff from the plant into a tray such as a tinfoil baking tray.
     1. The runoff EC will typically be lower than the substrate EC.
     2. The runoff pH should be slightly higher than the input solution, indicating healthy nutrient uptake. A lower runoff pH may indicate rootzone saturation or health issues.
     3. Refer to the Athena Handbook for further information on precision irrigation / dryback techniques.
@@ -364,6 +375,7 @@ To achieve the highest potential of any given cultivar, the Cultivator must mani
 10. Any large fan-leaves that have re-grown may be removed at this point as part of a "bucking" process. These are to be disposed of safely and securely in accordance with the relevant Biomass disposal process.
 
 11. Plants should be checked regularly to ensure they do not over-dry. Initially this may happen on a "daily" basis, but after a couple of days this may need to be several times per-day.
+    1. These checks should be done remotely through the room sensors wherever possible. Every time the drying room is entered, the temperature and humidity are disturbed, so physical checks should be kept to what's needed (such as the end-of-day dryness check in 6.12.1) and kept brief.
 
 12. The dehumidification should then move automatically from the dehumidifiers as the setpoint is reached, to just dehumidification through air conditioning.
     1. While checking dryness, if the plants are found to be close enough to 60%aw towards the end of the work-day, then all dehumidification should be disabled overnight so that the plants do not over-dry.
@@ -542,14 +554,14 @@ The recipient must still be authorized to receive cannabis.
 11. Testing for HLVd should be undertaken regularly to ensure no contamination of plant materials has taken place. Regular testing ensures an early warning of any issues that may take place.
 
 12. This shall be undertaken either:
-   1. Within a minimum of 1 month prior to sending any live clones to another licence holder if purchased
-   2. Within a month of sending partially or field-dried plants to another facility to complete the drying process
-   3. Every 3-6 months otherwise
+    1. Within a minimum of 1 month prior to sending any live clones to another licence holder if purchased
+    2. Within a month of sending partially or field-dried plants to another facility to complete the drying process
+    3. Every 3-6 months otherwise
 
 13. DNA samples shall be tested in accordance with testing laboratory specifications, but should include:
-   1. DNA samples taken from the top-most sugar leaf
-   2. DNA samples taken from the lower fan leaves
-   3. DNA samples taken from the rootmass
+    1. DNA samples taken from the top-most sugar leaf
+    2. DNA samples taken from the lower fan leaves
+    3. DNA samples taken from the rootmass
 
 14. This ensures that a broad range of samples are taken, as the viroid can be difficult to detect even with qPCR and similar testing methodologies. This is due to how the viroid moves around the plant.
 
@@ -563,8 +575,8 @@ The recipient must still be authorized to receive cannabis.
 ## 10. Cleaning / room reset
 
 There are two stages the grower should think of for every aspect of "cleaning":
-1. Scrubbing / removing debris / cleaning
-2. Sanitize / sterilize
+* Scrubbing / removing debris / cleaning
+* Sanitize / sterilize
 
 At all times when cleaning, it is important to be mindful that both steps take place to ensure that additional bio-burden is not present which may impact the plants / flower.
 
@@ -748,7 +760,7 @@ In the event of a nutrient spill, the following steps must be taken immediately 
     2. For liquids (such as Fade, Blended Balance, Reset, IPW) or stock concentrates, chemical-resistant gloves and protective clothing are required.
 
 33. Contain and collect the spilled material.
-    1. Dry products should be carefully swept or vacuumed, taking care not to create airborne dust.
+    1. Dry products should be carefully swept, or vacuumed where there are no plants in the room, taking care not to create airborne dust.
     2. Liquids should be absorbed with a non-combustible, inert material. For larger spills, use sand, earth, or vermiculite to create a dike around the spill first.
     3. Reset (peroxyacetic acid) is an oxidizer and corrosive, so keep it away from combustible materials and neutralize small spills with soda ash before absorbing.
 
@@ -761,6 +773,8 @@ In the event of a nutrient spill, the following steps must be taken immediately 
 ---
 
 ## Changelog
+
+* v3.1 additions. Added heat mat labelling (§3.6.4), keeping hands off the buds (§5.9), a final-week pass to remove popcorn buds (§5.13), a preference for automated crop steering (§5 Crop steering), and relying on the sensors rather than repeated trips into the drying room (§6.11.1). Dry nutrient spills are now only vacuumed where there are no plants in the room (§12.33.1). The Hop Latent Viroid sub-items (§9.12, §9.13) and the two cleaning stages in the §10 introduction were corrected, as they were showing duplicate item numbers. The Introduction now notes these are not GACP or GMP SOPs.
 
 * v3.0.1 version alignment with the suite release. No changes to this document's content.
 
