@@ -14,7 +14,7 @@ here.)
 > SOP documents are licensed under [CC BY-SA 4.0](LICENSE): use them, adapt them
 > to your own facility, even commercially. In return you must **keep the Chill
 > Division attribution**, note what you changed, and share any public
-> derivative under the same open license. "Chill Division", the logo, and the
+> derivative under the same open licence. "Chill Division", the logo, and the
 > letterhead are trademarks. Reuse the content, not the brand, and don't pass
 > the work off as your own. See [`NOTICE`](NOTICE) for the details.
 
@@ -22,11 +22,11 @@ here.)
 
 | Document | Status | Purpose |
 | --- | --- | --- |
-| **Cultivation Procedures** (`v3.0.1`) | Current, from v2.6.1 §1-12 | Day-to-day growing: propagation, veg, flower, harvest, drying, trimming, IPM, nutrients, testing. |
-| **Security Policies & Procedures** (`v3.0.1`) | Current, from v2.6.1 §13-37 | Access control, surveillance, staff / visitor procedures, records, disposal, inward / outward goods. |
-| **Advertising SOPs** (`v3.0.1`) | In progress, not yet published on the website | Advertising and promotion within the New Zealand regulatory constraints. |
-| **Automations Guide** (`v3.0.1`, bonus) | Current, from a working HA config | How to set up the automations referenced in the other docs: sensors, Home Assistant helpers, ESPHome vs Home Assistant logic. |
-| **How to use these documents** (`v3.0.1`) | Framework only, content to come | The basics for new readers: what these documents are, how to read them, and where to start. |
+| **Cultivation Procedures** (`v3.1`) | Current, from v2.6.1 §1-12 | Day-to-day growing: propagation, veg, flower, harvest, drying, trimming, IPM, nutrients, testing. |
+| **Security Policies & Procedures** (`v3.1`) | Current, from v2.6.1 §13-37 | Access control, surveillance, staff / visitor procedures, records, disposal, inward / outward goods. |
+| **Advertising SOPs** (`v3.1`) | In progress, not yet published on the website | Advertising and promotion within the New Zealand regulatory constraints. |
+| **Automations Guide** (`v3.1`, bonus) | Current, from a working HA config | How to set up the automations referenced in the other docs: sensors, Home Assistant helpers, ESPHome vs Home Assistant logic. |
+| **How to use these documents** (`v3.1`) | Current | The basics for new readers: what these documents are, how to read them, and where to start. |
 
 A licence application is expected to include the Security and Cultivation
 documents together. Chapter 1 of the Security document covers the building
@@ -56,6 +56,18 @@ implementation of them.
 - **Changelog** — every document keeps a changelog / document-history section at
   the end. Summarise what changed and why, referencing the affected section (e.g.
   `§2.10`).
+- **Timelines** are a numbered list inside `<div class="timeline">`, with a blank
+  line after the opening tag and another before the closing one. Each step is a
+  bold title and how long it takes in italics, then the description as its own
+  paragraph. The steps aren't SOP items, so they don't get section numbers.
+  "The licensing timeline" in How to use these documents is a worked example.
+- **Flowcharts** are written in [Graphviz](https://graphviz.org/) DOT, in a
+  fenced code block tagged `dot`. Any text after `dot` on the opening line
+  becomes the caption. The build draws each one as an inline SVG that follows
+  light and dark mode, and its boxes can link to the items they summarise. The
+  classes that style them (decisions, deadlines, risks and so on) are listed
+  with the diagram rules in `publish/style.css`, and the Disposal of biomass
+  flowchart in the Security Policies and Procedures (§6) is a worked example.
 
 ## Contributing via pull request
 
@@ -139,6 +151,7 @@ Run locally (WSL or any Linux/macOS/Windows with Python 3.10+):
 
 ```sh
 pip install markdown-it-py
+sudo apt-get install graphviz     # draws the flowcharts
 python3 publish/build.py          # HTML + PDFs into dist/
 python3 publish/build.py --no-pdf # HTML only
 python3 publish/build.py --channel staging --out dist/staging  # draft site
@@ -169,7 +182,7 @@ allowed to deploy, so a push to `staging` asks GitHub to run the deploy from
 
 ## Licensing
 
-Two kinds of material, two licenses:
+Two kinds of material, two licences:
 
 - **The SOP documents** (the Markdown in the repo root and the generated
   HTML/PDF) — **[CC BY-SA 4.0](LICENSE)**. Standard, unmodified. You may use,
@@ -178,11 +191,11 @@ Two kinds of material, two licenses:
   under the same terms.
 - **The publishing tooling** (`publish/`, `.github/`) — **[MIT](publish/LICENSE)**.
 
-[`NOTICE`](NOTICE) adds the parts that live *alongside* the license without
+[`NOTICE`](NOTICE) adds the parts that live *alongside* the licence without
 restricting it: the trademark reservation ("Chill Division", logo, and
 letterhead are not licensed — reuse the content, not the brand), the "this does
 not itself grant you a licence / no warranty" statement, and a provenance note.
 
-Contributions are accepted under the same licenses, certified with a Developer
+Contributions are accepted under the same licences, certified with a Developer
 Certificate of Origin sign-off — commit with `git commit -s` to add the
 `Signed-off-by:` line.

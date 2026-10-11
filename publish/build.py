@@ -13,7 +13,8 @@ Usage:
   python3 publish/build.py --no-pdf   # HTML only
   python3 publish/build.py --docs "Chill Division Security*.md"
 
-Dependencies: pip install markdown-it-py
+Dependencies: pip install markdown-it-py, plus Graphviz for the flowcharts
+(sudo apt-get install graphviz).
 PDF rendering: any installed Chromium-based browser (Edge, Chrome, Chromium).
 Works on Windows, Linux, and WSL (uses the Windows browser from inside WSL).
 """
@@ -102,9 +103,18 @@ def apply_hierarchical_numbering(tokens, src_lines):
     prefix_level = None
     stack = []  # one entry per open list; {"ul": bool, "current": str|None}
     seen_ids = {}  # deduplicate item ids (authored numbers can repeat)
+    # A timeline (<div class="timeline">) numbers its steps in CSS. Its steps
+    # aren't SOP items, so they get no SOP number or anchor, which would clash
+    # with the real items in the same section and turn up in search as them.
+    in_timeline = False
 
     for idx, tok in enumerate(tokens):
-        if tok.type == "heading_open":
+        if tok.type == "html_block":
+            if 'class="timeline"' in tok.content:
+                in_timeline = True
+            elif in_timeline and tok.content.strip() == "</div>":
+                in_timeline = False
+        elif tok.type == "heading_open":
             level = int(tok.tag[1])
             inline = tokens[idx + 1].content if idx + 1 < len(tokens) else ""
             m = SECNUM_RE.match(inline or "")
@@ -114,14 +124,16 @@ def apply_hierarchical_numbering(tokens, src_lines):
                 prefix, prefix_level = None, None
             stack = []
         elif tok.type == "ordered_list_open":
-            stack.append({"ul": False, "current": None})
-            tok.attrJoin("class", "num-ol")
+            stack.append({"ul": False, "current": None, "plain": in_timeline})
+            if not in_timeline:
+                tok.attrJoin("class", "num-ol")
         elif tok.type == "bullet_list_open":
             stack.append({"ul": True, "current": None})
         elif tok.type in ("ordered_list_close", "bullet_list_close"):
             if stack:
                 stack.pop()
-        elif tok.type == "list_item_open" and stack and not stack[-1]["ul"]:
+        elif (tok.type == "list_item_open" and stack and not stack[-1]["ul"]
+              and not stack[-1].get("plain")):
             num = None
             if tok.map:
                 line = src_lines[tok.map[0]] if tok.map[0] < len(src_lines) else ""
@@ -142,9 +154,60 @@ def apply_hierarchical_numbering(tokens, src_lines):
                 tok.attrSet("id", base if n == 0 else f"{base}-{n}")
 
 
+# Diagrams. A fenced code block tagged dot is a Graphviz drawing, and any text
+# after "dot" is its caption:
+#
+#   ```dot The import process at a glance
+#   digraph { ... }
+#   ```
+#
+# It's drawn at build time and inlined as SVG, so it prints sharp and needs no
+# scripts to view. Nodes, edges and clusters can carry a class (class=choice),
+# and the diagram rules in style.css colour them from the page's own palette,
+# so a drawing follows light and dark mode. The colours written in the .dot
+# are only the fallback. Use fontname="Liberation Sans": it has the same letter
+# widths as Arial, which is what the pages show the text in.
+DIAGRAM_FONT = "Arial, 'Liberation Sans', Helvetica, sans-serif"
+
+
+def render_dot(source: str, caption: str) -> str:
+    dot = shutil.which("dot")
+    if not dot:
+        sys.exit("Graphviz is needed to draw the diagrams: sudo apt-get install graphviz")
+    res = subprocess.run([dot, "-Tsvg"], input=source, capture_output=True,
+                         text=True, encoding="utf-8")
+    if res.returncode != 0:
+        sys.exit(f'Graphviz couldn\'t draw the diagram "{caption}":\n{res.stderr}')
+    svg = res.stdout[res.stdout.index("<svg"):]  # drop the XML prolog and doctype
+    svg = re.sub(r"<!--.*?-->|<title>.*?</title>", "", svg, flags=re.S)
+    # Ids would clash between diagrams on one page, and the link titles are
+    # only the raw labels.
+    svg = re.sub(r'\s(?:id|xlink:title)="[^"]*"', "", svg)
+    svg = svg.replace("xlink:href=", "href=")
+    svg = re.sub(r'font-family="[^"]*"', f'font-family="{DIAGRAM_FONT}"', svg)
+    # Graphviz measures in points. Show it at that size (in pixels at 96 dpi),
+    # and let the stylesheet scale it down where it doesn't fit.
+    m = re.match(r'<svg width="([\d.]+)pt" height="([\d.]+)pt"', svg)
+    w, h = (round(float(v) * 4 / 3) for v in m.groups())
+    svg = (f'<svg width="{w}" height="{h}" role="img" '
+           f'aria-label="{html_lib.escape(caption or "Diagram")}"' + svg[m.end():])
+    svg = "\n".join(line for line in svg.splitlines() if line.strip())
+    figcaption = f"<figcaption>{html_lib.escape(caption)}</figcaption>\n" if caption else ""
+    return f'<figure class="diagram" data-tool="diagram">\n{svg}\n{figcaption}</figure>\n'
+
+
 def render_markdown(md_text: str) -> str:
     md = MarkdownIt("commonmark", {"html": True, "linkify": False, "typographer": False})
     md.enable("table")
+    default_fence = md.renderer.rules["fence"]
+
+    def fence(self, tokens, idx, options, env):
+        lang, _, caption = tokens[idx].info.strip().partition(" ")
+        if lang == "dot":
+            return render_dot(tokens[idx].content, caption.strip())
+        return default_fence(tokens, idx, options, env)
+
+    md.add_render_rule("fence", fence)
     tokens = md.parse(md_text)
     apply_hierarchical_numbering(tokens, md_text.split("\n"))
     return md.renderer.render(tokens, md.options, {})
@@ -582,7 +645,7 @@ The SOP documents are licensed under
 <a href="https://github.com/Chill-Division/SOPs/blob/main/LICENSE">CC BY-SA 4.0</a>:
 use them, adapt them to your own facility, even commercially. In return you must
 <strong>keep the Chill Division attribution</strong>, note what you changed, and
-share any public derivative under the same open license. "Chill Division", the
+share any public derivative under the same open licence. "Chill Division", the
 logo, and the letterhead are trademarks. Reuse the content, not the brand, and
 don't pass the work off as your own. See
 <a href="https://github.com/Chill-Division/SOPs/blob/main/NOTICE"><code>NOTICE</code></a>

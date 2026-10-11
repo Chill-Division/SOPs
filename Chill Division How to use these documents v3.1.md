@@ -3,7 +3,7 @@
 **Cultivation Facility**
 How to use these documents
 
-v3.0.1
+v3.1
 "The complete set"
 
 ---
@@ -29,7 +29,7 @@ Copyright © Chill Division. Licensed under [CC BY-SA 4.0](https://creativecommo
 
 ## The basics
 
-These have been written with a Medicinal Cannabis License and Cultivation activity in-mind, specifically to suit New Zealands "Minimum Quality Standards" under the Medicinal Cannabis Scheme. Although there are a lot of similarities between Australia and New Zealand (for example, TGA guidelines are often referred to by the Medicinal Cannabis Agency), these have been written for facilities in Aotearoa with an expected domestic audience.
+These have been written with a Medicinal Cannabis Licence and Cultivation activity in-mind, specifically to suit New Zealands "Minimum Quality Standards" under the Medicinal Cannabis Scheme. Although there are a lot of similarities between Australia and New Zealand (for example, TGA guidelines are often referred to by the Medicinal Cannabis Agency), these have been written for facilities in Aotearoa with an expected domestic audience.
 
 There is little sense in trying to reinvent the wheel. Too many people have started out with some hair-brained scheme to "be the best" that hasn't eventuated. A successful business needs to make quality flower, consistently, and that's it. There's no need to try and complicate it with some shitty "IP" or custom way of doing things, when there are thousands of facilities across the world and the majority of them grow in coco or rockwool with crop-steering for a reason. Be successful, then innovate, but it's a fools errand to assume that a humble home-grower knows better than so many other successful facilities. Granted, there's always someone commercializing every single manner of doing things, but if you stick with the herd you're more likely to survive than if you try something wild and wacky.
 
@@ -45,6 +45,56 @@ Be on their side though. Help give them all the information they need. An adviso
 
 Also: Be kind! They are nice people who are simply trying to enforce the rules and regulations that politicians have made. If you follow the rules and satisfy them that you'll be responsible, you should get licensed.
 
+## The licensing timeline
+
+Here's how a cultivation licence application usually runs, and roughly how long each step takes. The Agency's timeframes move with their workload, so treat these as a guide rather than a promise.
+
+<div class="timeline">
+
+1. **Engage a consultant** *Start*
+
+   Getting help with your SOPs and your licence application from a regulatory consultant is the *best* first step.
+
+2. **Lease a location** *Variable*
+
+   A suitable location is the domino that sets off the rest, and it must be sorted before anything else.
+
+3. **Design your floorplan** *1 week*
+
+   Once it's leased, design your floorplan to suit. You can even do this before you get the keys to your new facility.
+
+4. **Submit your application** *1 to 2 days*
+
+   The paperwork is minimal, but it **must** be witnessed by a JP. Don't forget Form D (the declaration of illicit seeds and plants). Chill Division clients get a templated application email with all the info the Agency needs in it.
+
+5. **Loaded into their system** *2 weeks*
+
+   The Agency reviews your application, loads you into their accounting system, and sends the first invoice, $345 for the initial check.
+
+6. **Initial check** *1 to 2 weeks*
+
+   The Agency makes sure everything in your application has been filled out, then sends the second and final invoice, around $8,800 for one site with one Form D.
+
+7. **Tabletop check** *Around 4 weeks*
+
+   The Agency does a thorough check of your proposed location, SOPs and security arrangements.
+
+8. **RFIs** *1 to 2 weeks*
+
+   You'll be sent RFIs (Requests for Information) to clarify parts of your licence application and / or security procedures.
+
+9. **Site audit** *4+ weeks*
+
+   Once they're happy with your paperwork, the Agency needs at least 4 weeks' notice for your site audit. If you haven't finished your build, you'll need to push this out a bit.
+
+10. **Licence issued** *3 to 4 weeks*
+
+    Congratulations, you should now be a licensed medicinal cannabis cultivator!
+
+</div>
+
+All up, that's around four to five months from signing a lease to holding a licence, and longer if your build runs late. Fees are GST inclusive, from the Ministry of Health's [application fees](https://www.health.govt.nz/regulation-legislation/medicinal-cannabis/information-for-industry/application-fees) page (last updated July 2022).
+
 ## Definitions
 
 There are parts of the document that have been intentionally left ambiguous. This is so that each facility can define the interpretation in a practical manner.
@@ -57,9 +107,15 @@ These SOPs are *NOT* designed to get you GACP or GMP certified. Those certificat
 
 However, some exporters will want GACP as part of the receiving jurisdictions requirements. You may need to obtain further SOPs from anybody who wants you to have GACP certification.
 
+## What these documents don't cover
+
+These SOPs do not cover health and safety. As the PCBU (Person Conducting a Business or Undertaking) under the Health and Safety at Work Act 2015, you are responsible for undertaking your own risk assessments and managing the hazards at your own site, such as CO2, chemicals, electrical hazards and working at heights. Council requirements, such as building consent, resource consent and trade waste, are also outside the scope of these documents and should be confirmed with your local council.
+
 ---
 
 ## Changelog
+
+* v3.1 added a licensing timeline, and a What these documents don't cover section, for health and safety (PCBU) and Council requirements.
 
 * v3.0.1 version alignment with the suite release. No changes to this document's content.
 
