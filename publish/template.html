@@ -459,6 +459,23 @@
     }
   });
 
+  /* ---------- diagrams ---------- */
+  /* On a phone a diagram is shrunk to fit the screen, so each gets a button
+     to show it full size and scroll around it. The button goes just above
+     the figure, not in it, so it doesn't scroll sideways with the drawing.
+     The same as the extras' publish/tools/diagram.js. */
+  Array.prototype.forEach.call(document.querySelectorAll(".diagram"), function (fig) {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "diagram-zoom";
+    btn.textContent = "Show full size";
+    btn.addEventListener("click", function () {
+      var full = fig.classList.toggle("full-size");
+      btn.textContent = full ? "Fit to screen" : "Show full size";
+    });
+    fig.parentNode.insertBefore(btn, fig);
+  });
+
   /* ---------- init ---------- */
   var savedView = "chapters";
   try { savedView = localStorage.getItem("sop-view") || "chapters"; } catch (e) {}

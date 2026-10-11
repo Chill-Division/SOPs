@@ -315,6 +315,191 @@ body.mode-chapters .chapter.current { display: block; }
   color: var(--accent-strong);
 }
 
+/* Timelines: a numbered list inside <div class="timeline">. Each step is a
+   bold title and how long it takes in italics, then a paragraph about it.
+   The steps aren't SOP items (build.py leaves them unnumbered), so their
+   numbers come from a counter here. Each sits in a circle, joined to the next
+   by a dashed line, and the last step is filled in. */
+.content .timeline ol {
+  counter-reset: timeline;
+  list-style: none;
+  margin: 1.5rem 0;
+  padding-left: 0;
+}
+.content .timeline ol > li {
+  position: relative;
+  counter-increment: timeline;
+  min-height: 2.5rem;
+  margin: 0 0 1.25rem;
+  padding-left: 3.6rem;
+}
+.content .timeline ol > li::before {
+  content: counter(timeline);
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--accent-strong);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.content .timeline ol > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(1.25rem - 1px);
+  top: 2.75rem;
+  bottom: -1rem;
+  border-left: 2px dashed color-mix(in srgb, var(--muted) 45%, transparent);
+}
+.content .timeline ol > li:last-child::before {
+  background: var(--accent);
+  color: var(--panel);
+}
+.content .timeline li > p { margin: 0; }
+.content .timeline li > p:first-child { margin: 0.4rem 0 0.35rem; }
+.content .timeline li > p:first-child strong {
+  display: inline-block;
+  padding: 0.05rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+.content .timeline li > p:first-child em {
+  margin-left: 0.4rem;
+  font-style: normal;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* In print the steps sit closer together, so a whole timeline fits on a page. */
+@media print {
+  .content .timeline ol > li { min-height: 2.1rem; margin-bottom: 0.55rem; padding-left: 3.1rem; }
+  .content .timeline ol > li::before { width: 2.1rem; height: 2.1rem; border-width: 2px; }
+  .content .timeline ol > li:not(:last-child)::after {
+    left: calc(1.05rem - 1px);
+    top: 2.3rem;
+    bottom: -0.4rem;
+  }
+  .content .timeline li > p:first-child { margin-top: 0.2rem; }
+  /* The lead-in, and so the heading, stay on the timeline's page. */
+  .content p:has(+ .timeline) { break-after: avoid; }
+}
+
+/* Diagrams: Graphviz drawings inlined as SVG by build.py (```dot fences).
+   The same rules as the extras' publish/tools/diagram.css.
+   Colours come from the page's palette, so they follow light and dark mode.
+   Nodes, edges and clusters are styled by the class given in the .dot:
+     stage       a cluster holding one stage of a process
+     stagelabel  the stage's title, a shape=plain node in the cluster's first
+                 row (a cluster label would have edges drawn through it)
+     choice      a decision
+     option      one answer to a decision, plus rec for the one we recommend
+     clock       a deadline, or a clock that's running
+     risk        something that costs money or goes wrong
+     cd          a step where Chill Division comes in
+     end         where the process finishes
+     note        the dashed line tying a clock or risk to its step */
+.diagram {
+  --dg-clock-bg: #fff6e5; --dg-clock-line: #c77c0e; --dg-clock-text: #7a4a05;
+  --dg-risk-bg: #fdeeee; --dg-risk-line: #d14343; --dg-risk-text: #8f1d1d;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+html[data-theme="dark"] .diagram {
+  --dg-clock-bg: #2a2112; --dg-clock-line: #e0a43a; --dg-clock-text: #f3c97a;
+  --dg-risk-bg: #2d1719; --dg-risk-line: #e57373; --dg-risk-text: #f5b0b0;
+}
+.diagram svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+.diagram text { fill: var(--text); }
+.diagram .graph > polygon { fill: none; stroke: none; }
+
+.diagram .cluster > path,
+.diagram .cluster > polygon { fill: var(--accent-soft); stroke: none; }
+.diagram .cluster text,
+.diagram .node.stagelabel text { fill: var(--muted); }
+.diagram .cluster text[font-weight="bold"],
+.diagram .node.stagelabel text[font-weight="bold"] { fill: var(--accent-strong); }
+
+.diagram .node path,
+.diagram .node polygon { fill: var(--panel); stroke: var(--border); }
+.diagram .node.stagelabel path,
+.diagram .node.stagelabel polygon { fill: none; stroke: none; }
+.diagram .node.choice path,
+.diagram .node.choice polygon { stroke: var(--accent); stroke-width: 1.5; }
+.diagram .node.rec path { stroke: var(--accent); stroke-width: 2; }
+.diagram .node.end path { stroke: var(--text); stroke-width: 1.6; }
+.diagram .node.clock path { fill: var(--dg-clock-bg); stroke: var(--dg-clock-line); }
+.diagram .node.clock text { fill: var(--dg-clock-text); }
+.diagram .node.risk path { fill: var(--dg-risk-bg); stroke: var(--dg-risk-line); }
+.diagram .node.risk text { fill: var(--dg-risk-text); }
+.diagram .node.cd path { fill: var(--accent); stroke: var(--accent); }
+.diagram .node.cd text { fill: var(--panel); }
+
+.diagram .edge path { stroke: var(--muted); }
+.diagram .edge polygon { fill: var(--muted); stroke: var(--muted); }
+.diagram .edge text { fill: var(--muted); }
+.diagram .edge.note path { stroke-dasharray: 3 3; }
+
+/* Boxes link to the part of the document they summarise. */
+.diagram a { cursor: pointer; }
+.diagram a:focus { outline: none; }
+.diagram a:hover path, .diagram a:hover polygon,
+.diagram a:focus-visible path, .diagram a:focus-visible polygon {
+  stroke: var(--accent-strong); stroke-width: 2.5;
+}
+
+.diagram figcaption {
+  margin-top: 0.6rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* On a phone the diagram is shrunk to fit, and a button (template.html)
+   shows it full size to scroll around instead. */
+.diagram-zoom { display: none; }
+@media screen and (max-width: 640px) {
+  .diagram-zoom {
+    display: block;
+    margin: 0 0 0.6rem auto;
+    appearance: none;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-strong);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 0.45rem;
+    padding: 0.3rem 0.75rem;
+    cursor: pointer;
+  }
+  .diagram.full-size svg { max-width: none; }
+}
+
+@media print {
+  .diagram, html[data-theme="dark"] .diagram {
+    --dg-clock-bg: #fff6e5; --dg-clock-line: #c77c0e; --dg-clock-text: #7a4a05;
+    --dg-risk-bg: #fdeeee; --dg-risk-line: #d14343; --dg-risk-text: #8f1d1d;
+    overflow: visible;
+    break-inside: avoid;
+  }
+  /* Short enough to share a page with its heading and a line of intro, which
+     stay with it rather than being stranded at the foot of the page before. */
+  .diagram svg { width: auto; max-height: 222mm; }
+  p:has(+ .diagram), p:has(+ .diagram-zoom) { break-after: avoid; }
+}
+
 .content blockquote {
   margin: 1.25rem 0;
   padding: 0.75rem 1.1rem;
