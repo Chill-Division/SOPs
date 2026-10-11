@@ -1,0 +1,7 @@
+old/
+dist/
+
+# Local tooling config and caches (machine-specific, not for the repo)
+.claude/
+__pycache__/
+*.pyc

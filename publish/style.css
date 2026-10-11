@@ -1,0 +1,809 @@
+/* ==========================================================================
+   Chill Division SOP publishing stylesheet
+   Light mode (default) with blue accents; dark mode via [data-theme="dark"].
+   Inlined into the self-contained HTML at build time by publish/build.py.
+   ========================================================================== */
+
+:root {
+  --bg: #f6f8fb;
+  --panel: #ffffff;
+  --text: #1d2833;
+  --muted: #5c6c7d;
+  --accent: #1a6fe8;
+  --accent-strong: #0f5bd0;
+  --accent-soft: #e9f1fe;
+  --border: #dce4ee;
+  --code-bg: #eff3f9;
+  --shadow: 0 1px 3px rgba(16, 34, 60, 0.08), 0 8px 24px rgba(16, 34, 60, 0.06);
+  --topbar-h: 3.5rem;
+  --sidebar-w: 19rem;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --bg: #0e1520;
+  --panel: #151f2c;
+  --text: #dce5ef;
+  --muted: #8da0b5;
+  --accent: #5ea0ff;
+  --accent-strong: #82b5ff;
+  --accent-soft: #14273f;
+  --border: #253649;
+  --code-bg: #101a27;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Top bar
+   -------------------------------------------------------------------------- */
+
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  z-index: 40;
+}
+
+.topbar .doc-title {
+  font-weight: 650;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.version-badge:empty { display: none; }
+
+.version-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.icon-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.icon-btn svg { width: 1.1rem; height: 1.1rem; }
+
+.view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  overflow: hidden;
+}
+.view-toggle button {
+  appearance: none;
+  border: 0;
+  background: var(--panel);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+}
+.view-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* theme icons: show moon in light mode, sun in dark mode */
+#themeToggle .icon-sun { display: none; }
+#themeToggle .icon-moon { display: inline; }
+html[data-theme="dark"] #themeToggle .icon-sun { display: inline; }
+html[data-theme="dark"] #themeToggle .icon-moon { display: none; }
+
+/* --------------------------------------------------------------------------
+   Layout: sidebar + content
+   -------------------------------------------------------------------------- */
+
+.layout {
+  display: flex;
+  padding-top: var(--topbar-h);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: fixed;
+  top: var(--topbar-h);
+  bottom: 0;
+  left: 0;
+  width: var(--sidebar-w);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 1rem 0.75rem 2rem;
+  z-index: 30;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  margin-left: var(--sidebar-w);
+  padding: 2rem clamp(1rem, 4vw, 3.5rem) 4rem;
+  max-width: calc(var(--sidebar-w) + 52rem);
+}
+
+/* Desktop: hamburger collapses the sidebar for a wider reading column. */
+@media (min-width: 1024px) {
+  .sidebar { transition: transform 0.2s ease; }
+  body.sidebar-collapsed .sidebar { transform: translateX(-100%); }
+  body.sidebar-collapsed .content { margin-left: 0; max-width: 56rem; }
+}
+
+/* Home / all-documents link — hidden on the index itself. */
+.home-link { text-decoration: none; flex: 0 0 auto; }
+.is-index .home-link { display: none; }
+/* View toggle and chapter pager are meaningless on the index page. */
+.is-index .view-toggle,
+.is-index .pager { display: none; }
+/* The index chapter opens directly with the Documents heading, so drop the
+   heading's top margin to start the page as tight as the document pages. */
+.is-index .chapter > h2:first-child { margin-top: 0; }
+
+/* Standalone form pages: a single section, so no TOC, view toggle or pager. */
+.is-form .sidebar,
+.is-form #navToggle,
+.is-form .view-toggle,
+.is-form .pager { display: none; }
+.is-form .content { margin-left: 0; max-width: 56rem; }
+
+.scrim {
+  display: none;
+  position: fixed;
+  inset: var(--topbar-h) 0 0 0;
+  background: rgba(10, 20, 35, 0.45);
+  z-index: 25;
+}
+
+/* Tablet / phone: off-canvas drawer */
+@media (max-width: 1023px) {
+  .sidebar {
+    transform: translateX(-105%);
+    transition: transform 0.22s ease;
+    box-shadow: var(--shadow);
+    width: min(var(--sidebar-w), 85vw);
+  }
+  body.nav-open .sidebar { transform: translateX(0); }
+  body.nav-open .scrim { display: block; }
+  .content { margin-left: 0; }
+  .view-toggle button { padding: 0.4rem 0.55rem; font-size: 0.74rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Table of contents
+   -------------------------------------------------------------------------- */
+
+.toc-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 0.25rem 0.75rem 0.5rem;
+}
+
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc ul ul {
+  margin-left: 0.65rem;
+  border-left: 1px solid var(--border);
+}
+
+.toc a {
+  display: block;
+  padding: 0.32rem 0.75rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.86rem;
+  border-radius: 0.45rem;
+  line-height: 1.35;
+}
+.toc ul ul a { font-size: 0.8rem; color: var(--muted); }
+
+.toc a:hover { background: var(--accent-soft); color: var(--accent-strong); }
+.toc a.active {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Document content
+   -------------------------------------------------------------------------- */
+
+.chapter { max-width: 48rem; }
+
+body.mode-chapters .chapter { display: none; }
+body.mode-chapters .chapter.current { display: block; }
+
+.content h1, .content h2, .content h3, .content h4 {
+  line-height: 1.3;
+  scroll-margin-top: calc(var(--topbar-h) + 1rem);
+}
+
+.content h1 { font-size: 1.75rem; margin: 1.5rem 0 1rem; }
+
+.content h2 {
+  font-size: 1.45rem;
+  margin: 2.25rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.content h3 { font-size: 1.15rem; margin: 1.9rem 0 0.7rem; }
+.content h4 { font-size: 1rem; margin: 1.5rem 0 0.6rem; color: var(--muted); }
+
+.content a { color: var(--accent-strong); text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+
+.content p { margin: 0.8rem 0; }
+
+.content ol, .content ul { padding-left: 1.6rem; margin: 0.8rem 0; }
+.content li { margin: 0.45rem 0; }
+.content li > ol, .content li > ul { margin: 0.45rem 0; }
+
+/* Hierarchical SOP numbering (12 → 12.1 → 12.4.1), stamped at build time
+   as data-num attributes on ordered-list items. */
+.content ol.num-ol { list-style: none; padding-left: 0; }
+.content ol.num-ol > li { position: relative; padding-left: 3em; }
+.content ol.num-ol ol.num-ol > li { padding-left: 4em; }
+.content ol.num-ol ol.num-ol ol.num-ol > li { padding-left: 5em; }
+.content ol.num-ol ol.num-ol ol.num-ol ol.num-ol > li { padding-left: 6em; }
+.content ol.num-ol > li::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-strong);
+}
+
+.content blockquote {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1.1rem;
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 0.55rem 0.55rem 0;
+  color: var(--text);
+}
+.content blockquote p { margin: 0.4rem 0; }
+
+.content code {
+  font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", Consolas, Menlo, monospace;
+  font-size: 0.86em;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  padding: 0.08em 0.35em;
+}
+
+.content pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  padding: 0.9rem 1.1rem;
+  overflow-x: auto;
+}
+.content pre code { background: none; border: 0; padding: 0; }
+
+.content hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+}
+.content table thead th {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  text-align: left;
+  font-weight: 650;
+}
+.content table th, .content table td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.7rem;
+  vertical-align: top;
+}
+.content table tbody tr:nth-child(even) { background: color-mix(in srgb, var(--accent-soft) 40%, transparent); }
+
+.content img { max-width: 100%; height: auto; }
+
+/* --------------------------------------------------------------------------
+   Fill-in forms (e.g. Universal Shipping Manifest)
+   Authored as two-column tables inside <div class="fillform">. The header
+   row exists only so the table renders on plain Markdown viewers; here it is
+   hidden and the empty second column becomes a ruled fill-in line.
+   -------------------------------------------------------------------------- */
+
+.fillform table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  margin: 0.4rem 0 1.75rem;
+}
+.fillform table thead { display: none; }
+.fillform table td {
+  border: 0;
+  padding: 0.6rem 0 0.1rem;
+  vertical-align: bottom;
+}
+.fillform table tbody tr:nth-child(even) { background: transparent; }
+.fillform table td:first-child { width: 46%; padding-right: 1.25rem; }
+.fillform table td:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 50%, transparent);
+  height: 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.fillform p { margin: 1.6rem 0 0.25rem; }
+
+/* Slash separators positioned along the fill-in line: centred for
+   net / gross weights, 3/4 along for company name / licence number. */
+.fillform .slash-mid, .fillform .slash-3q { display: block; }
+.fillform .slash-mid { text-align: center; }
+.fillform .slash-3q { padding-left: 75%; }
+
+/* --------------------------------------------------------------------------
+   Chapter pager
+   -------------------------------------------------------------------------- */
+
+.pager {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  max-width: 48rem;
+}
+body.mode-chapters .pager { display: flex; }
+body.is-form .pager { display: none; }
+
+.pager button {
+  appearance: none;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pager button:hover:not(:disabled) { border-color: var(--accent); }
+.pager button:disabled { opacity: 0.35; cursor: default; }
+
+.pager .pager-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+
+.docfooter {
+  margin-top: 3rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+}
+.docfooter a { color: var(--accent-strong); text-decoration: none; white-space: nowrap; }
+.docfooter a:hover { text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   Staging channel: draft warning shown on every page
+   -------------------------------------------------------------------------- */
+
+.channel-banner {
+  max-width: 48rem;
+  margin: 0 0 1.5rem;
+  padding: 0.65rem 1rem;
+  background: color-mix(in srgb, #f59e0b 16%, var(--panel));
+  border: 1px solid color-mix(in srgb, #f59e0b 45%, var(--border));
+  border-radius: 0.55rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.channel-banner a { color: var(--accent-strong); text-decoration: none; font-weight: 600; }
+.channel-banner a:hover { text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   How-to-use modal
+   -------------------------------------------------------------------------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 35, 0.45);
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 14vh 1rem 1rem;
+}
+.modal-overlay[hidden] { display: none; }
+
+.modal-box {
+  width: 100%;
+  max-width: 34rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-head h2 { margin: 0; font-size: 1.05rem; }
+
+.modal-body { padding: 0.5rem 1.25rem; font-size: 0.92rem; }
+
+.modal-foot {
+  padding: 0.9rem 1.25rem 1.1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.modal-cta {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 0.55rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+.modal-cta:hover { background: var(--accent-strong); }
+
+/* Sidebar trigger for the modal. Hidden on the index (which links to it from
+   the intro text) and on the How to use page itself. */
+.howto-link {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0 0 0.9rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.howto-link:hover { border-color: var(--accent); }
+.howto-link svg { width: 1rem; height: 1rem; flex: 0 0 auto; }
+.is-index .howto-link,
+.is-howto .howto-link { display: none; }
+
+/* --------------------------------------------------------------------------
+   Search
+   -------------------------------------------------------------------------- */
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 35, 0.45);
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10vh 1rem 1rem;
+}
+.search-overlay[hidden] { display: none; }
+
+.search-box {
+  width: 100%;
+  max-width: 38rem;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.search-inputrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.search-inputrow svg { width: 1.1rem; height: 1.1rem; color: var(--muted); flex: 0 0 auto; }
+
+#searchInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+
+#searchClose {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border-radius: 0.4rem;
+  padding: 0.15rem 0.45rem;
+  cursor: pointer;
+}
+#searchClose:hover { border-color: var(--accent); color: var(--accent); }
+
+.search-results { overflow-y: auto; overscroll-behavior: contain; }
+
+.search-result {
+  appearance: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+.search-result:last-child { border-bottom: 0; }
+.search-result:hover, .search-result.selected { background: var(--accent-soft); }
+
+.sr-meta {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 0.35rem;
+  padding: 0.05rem 0.4rem;
+}
+
+.sr-text { flex: 1; min-width: 0; }
+.sr-text.sr-heading { font-weight: 650; }
+
+.search-result mark {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: inherit;
+  border-radius: 0.2rem;
+  padding: 0 0.08em;
+}
+
+.search-empty { padding: 1rem; color: var(--muted); font-size: 0.86rem; }
+
+/* Flash the target after jumping to a search result. */
+.search-hit { animation: search-hit 1.7s ease-out; }
+@keyframes search-hit {
+  0%, 45% { background: var(--accent-soft); box-shadow: 0 0 0 4px var(--accent-soft); border-radius: 0.3rem; }
+  100% { background: transparent; box-shadow: none; }
+}
+
+/* Keep jump targets clear of the fixed topbar. */
+.content li, .content p, .content tr { scroll-margin-top: calc(var(--topbar-h) + 1rem); }
+
+/* Phones: tighten the topbar so the extra search button still fits. */
+@media (max-width: 540px) {
+  .topbar { gap: 0.45rem; padding: 0 0.6rem; }
+  .icon-btn { width: 2rem; height: 2rem; }
+  .topbar .version-badge { display: none; }
+  .view-toggle button { padding: 0.35rem 0.45rem; font-size: 0.7rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Index page cards
+   -------------------------------------------------------------------------- */
+
+.doc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.doc-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.doc-card h3 { margin: 0; font-size: 1.05rem; }
+.doc-card .version-badge { align-self: flex-start; margin-left: 0; }
+.doc-card .doc-links { margin-top: auto; display: flex; gap: 0.6rem; padding-top: 0.75rem; }
+.doc-card .doc-links a {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+}
+.doc-card .doc-links a:hover { border-color: var(--accent); }
+.doc-card .doc-links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   Print — A4
+   -------------------------------------------------------------------------- */
+
+.print-only { display: none; }
+
+@page {
+  size: A4;
+  margin: 18mm 16mm;
+}
+
+@media print {
+  :root, html[data-theme="dark"] {
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --text: #17202b;
+    --muted: #4a5866;
+    --accent: #1a5fc4;
+    --accent-strong: #14509f;
+    --accent-soft: #edf3fc;
+    --border: #c9d4e0;
+    --code-bg: #f2f5f9;
+  }
+
+  body { background: #fff; font-size: 10.5pt; line-height: 1.5; }
+
+  .topbar, .sidebar, .scrim, .pager, #navToggle { display: none !important; }
+
+  .layout { padding-top: 0; }
+  .content { margin-left: 0; padding: 0; max-width: none; }
+  .chapter { display: block !important; max-width: none; }
+
+  .print-only { display: block; }
+
+  .print-title {
+    page-break-after: always;
+    padding-top: 30vh;
+    text-align: center;
+  }
+  .print-title .pt-brand {
+    font-size: 12pt;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: 1.5rem;
+  }
+  .print-title h1 { font-size: 22pt; margin: 0 0 1rem; }
+  .print-title .pt-version { color: var(--muted); font-size: 10pt; }
+
+  /* Standalone forms are a single page; skip the cover page entirely. */
+  .is-form .print-title { display: none; }
+
+  /* Draft banner prints on the cover page so staging PDFs are unmistakable. */
+  .channel-banner { border: 2px solid #92400e; background: #fef3e2; }
+
+  .chapter > h1, .chapter > h2:first-child { page-break-before: always; }
+  .chapter:first-of-type > h2:first-child { page-break-before: avoid; }
+
+  h1, h2, h3, h4 { page-break-after: avoid; }
+  table, blockquote, pre, img { page-break-inside: avoid; }
+  li { page-break-inside: avoid; }
+
+  .content table { display: table; font-size: 9pt; }
+
+  /* Fill-in forms print like the original paper manifest: solid ruled
+     lines, compact rows so the form fits a single A4 page, group labels
+     kept with their tables, and the next section starts on a fresh page. */
+  .fillform table { font-size: 10pt; margin: 0.2rem 0 0.9rem; }
+  .fillform table td { padding: 0.3rem 0 0.05rem; }
+  .fillform table td:last-child { border-bottom-color: #555; height: 1.65rem; }
+  .fillform p { margin: 0.8rem 0 0.1rem; page-break-after: avoid; }
+  .fillform tr { page-break-inside: avoid; }
+  .fillform ~ h3 { page-break-before: always; }
+
+  .content a { color: var(--text); text-decoration: none; }
+
+  .docfooter { border-top: 1px solid var(--border); padding-top: 0.5rem; }
+
+  /* Paper can't be clicked: swap the "Contribute" link for the literal URL. */
+  .docfooter .screen-only { display: none; }
+  .docfooter .print-only { display: inline; }
+}

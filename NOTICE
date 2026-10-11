@@ -1,0 +1,48 @@
+CHILL DIVISION SOPs — NOTICE
+============================
+
+This repository contains two kinds of material under two different licenses:
+
+  * The SOP documents — the Markdown files in the repository root and the
+    HTML / PDF outputs generated from them — are licensed under the Creative
+    Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
+    The full text is in LICENSE.
+    Summary: https://creativecommons.org/licenses/by-sa/4.0/
+
+  * The publishing tooling — everything under publish/ and .github/ — is
+    licensed under the MIT License (see publish/LICENSE).
+
+The clarifications below sit ALONGSIDE the CC BY-SA 4.0 license. They do not add
+restrictions to the rights that license grants; they cover matters outside
+copyright (trademarks), or restate in plain words things the license already
+addresses.
+
+Trademarks and branding
+-----------------------
+"Chill Division", the Chill Division name, logos, and letterhead are trademarks
+of Chill Division. CC BY-SA 4.0 does not license trademark rights (see its
+Section 2(b)(2)). You are free to reuse and adapt the CONTENT, but you may not
+use the Chill Division name, logos, or letterhead in a way that suggests Chill
+Division produced or endorses your version, and you may not present the material
+as your own original work. When you share or adapt it, keep the existing Chill
+Division attribution as CC BY-SA requires, and make clear what you changed.
+
+No warranty; this does not grant a licence
+-------------------------------------------
+The documents are provided "as is", without warranty of any kind. They are
+guidance, not a guarantee. Adopting or submitting these SOPs does not by itself
+result in a Medicinal Cannabis Agency licence being granted, nor does it
+guarantee compliance with any law or standard. Correct implementation and
+ongoing compliance are the responsibility of the user.
+
+Provenance
+----------
+These documents may contain distinctive passages that help identify their
+origin. Their presence does not grant any right to remove the attribution that
+CC BY-SA 4.0 requires.
+
+Contributions
+-------------
+Contributions are accepted under the same licenses (CC BY-SA 4.0 for the
+documents, MIT for the tooling), certified with a Developer Certificate of
+Origin sign-off — add a "Signed-off-by:" line by committing with `git commit -s`.
