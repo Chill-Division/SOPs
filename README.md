@@ -113,14 +113,16 @@ accepted.
 `publish/build.py` turns every root-level document into:
 
 1. a **self-contained single-file HTML** site in `dist/` — responsive
-   (desktop / tablet / phone), light mode with blue accents by default plus a
-   dark-mode toggle, a table-of-contents sidebar, and a switch between
-   chapter-by-chapter and single-page viewing;
+   (desktop / tablet / phone) in the Chill Division brand look (Inter, black
+   on white with a green accent) plus a dark-mode toggle, a table-of-contents
+   sidebar, and a switch between chapter-by-chapter and single-page viewing;
 2. an **A4 print-quality PDF** of each document, rendered from the single-page
    layout via a headless Chromium-based browser (Edge / Chrome / Chromium).
 
 Styling lives in `publish/style.css` (inlined at build time) and the page shell
-in `publish/template.html`.
+in `publish/template.html`. The Inter typeface is in `publish/fonts/` under the
+SIL Open Font License (`OFL.txt` stays with the files), and the build inlines it
+so every page and PDF uses it.
 
 The site has two channels:
 

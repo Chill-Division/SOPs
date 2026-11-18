@@ -1,36 +1,87 @@
 /* ==========================================================================
    Chill Division SOP publishing stylesheet
-   Light mode (default) with blue accents; dark mode via [data-theme="dark"].
+   Chill Division brand (see the brand guidelines): black on white with a
+   green accent in light mode (the default), and the brand's on-black colours
+   in dark mode via [data-theme="dark"].
    Inlined into the self-contained HTML at build time by publish/build.py.
    ========================================================================== */
 
+/* Inter, the brand typeface, as two subsets: Latin with the extended
+   accents (macrons for te reo Maori), then plain Latin. build.py inlines the
+   files from publish/fonts/ so each page stays self-contained. Inter is free
+   under the SIL Open Font License, which stays with the files
+   (publish/fonts/OFL.txt). */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/inter-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/inter-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Tokens. --accent is the brand green, used sparingly (hover, ticks, the
+   recommended option in a diagram). Links, active states and the numbers are
+   Ink (--accent-strong), and buttons are black pills. Dark mode swaps green
+   for white, as the brand says green on black is too weak. */
 :root {
-  --bg: #f6f8fb;
+  --bg: #ffffff;
   --panel: #ffffff;
-  --text: #1d2833;
-  --muted: #5c6c7d;
-  --accent: #1a6fe8;
-  --accent-strong: #0f5bd0;
-  --accent-soft: #e9f1fe;
-  --border: #dce4ee;
-  --code-bg: #eff3f9;
-  --shadow: 0 1px 3px rgba(16, 34, 60, 0.08), 0 8px 24px rgba(16, 34, 60, 0.06);
+  --soft: #f5f5f2;
+  --ink: #0d0d0d;
+  --text: #2c2c2a;
+  --muted: #64645f;
+  --accent: #2f6b45;
+  --accent-strong: #0d0d0d;
+  --accent-soft: #eaf2ec;
+  --border: #e4e3de;
+  --code-bg: #f5f5f2;
+  --warning: #b4541a;
+  --danger: #b42318;
+  --danger-soft: #fdf3f2;
+  --btn-bg: #0d0d0d;
+  --btn-text: #ffffff;
+  --btn-hover: #2b2b2b;
+  --logo: #000000;
+  --overlay: rgba(13, 13, 13, 0.45);
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.07);
   --topbar-h: 3.5rem;
   --sidebar-w: 19rem;
   color-scheme: light;
 }
 
 html[data-theme="dark"] {
-  --bg: #0e1520;
-  --panel: #151f2c;
-  --text: #dce5ef;
-  --muted: #8da0b5;
-  --accent: #5ea0ff;
-  --accent-strong: #82b5ff;
-  --accent-soft: #14273f;
-  --border: #253649;
-  --code-bg: #101a27;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --bg: #0d0d0d;
+  --panel: #151514;
+  --soft: #1c1c1b;
+  --ink: #ffffff;
+  --text: #d6d6d1;
+  --muted: #b9b9b4;
+  --accent: #ffffff;
+  --accent-strong: #ffffff;
+  --accent-soft: #262624;
+  --border: #2a2a28;
+  --code-bg: #1c1c1b;
+  --warning: #d9783a;
+  --danger: #e5675c;
+  --danger-soft: #2a1715;
+  --btn-bg: #ffffff;
+  --btn-text: #0d0d0d;
+  --btn-hover: #e9e9e6;
+  --logo: #ffffff;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4);
   color-scheme: dark;
 }
 
@@ -42,10 +93,18 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font);
   font-size: 16px;
   line-height: 1.65;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* --------------------------------------------------------------------------
@@ -66,7 +125,9 @@ body {
 }
 
 .topbar .doc-title {
+  color: var(--ink);
   font-weight: 650;
+  letter-spacing: -0.01em;
   font-size: 0.95rem;
   white-space: nowrap;
   overflow: hidden;
@@ -83,11 +144,12 @@ body {
   padding: 0.05rem 0.5rem;
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--accent-strong);
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--ink);
+  background: var(--soft);
+  border: 1px solid var(--border);
   border-radius: 999px;
   vertical-align: middle;
+  font-variant-numeric: tabular-nums;
 }
 
 .controls {
@@ -104,7 +166,7 @@ body {
   color: var(--text);
   width: 2.15rem;
   height: 2.15rem;
-  border-radius: 0.55rem;
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,14 +174,14 @@ body {
   font-size: 1rem;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
-.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+.icon-btn:hover { border-color: var(--ink); color: var(--ink); }
 
 .icon-btn svg { width: 1.1rem; height: 1.1rem; }
 
 .view-toggle {
   display: inline-flex;
   border: 1px solid var(--border);
-  border-radius: 0.55rem;
+  border-radius: 999px;
   overflow: hidden;
 }
 .view-toggle button {
@@ -134,9 +196,10 @@ body {
   cursor: pointer;
 }
 .view-toggle button.active {
-  background: var(--accent);
-  color: #fff;
+  background: var(--btn-bg);
+  color: var(--btn-text);
 }
+.view-toggle button:not(.active):hover { color: var(--ink); }
 
 /* theme icons: show moon in light mode, sun in dark mode */
 #themeToggle .icon-sun { display: none; }
@@ -183,9 +246,21 @@ html[data-theme="dark"] #themeToggle .icon-moon { display: none; }
   body.sidebar-collapsed .content { margin-left: 0; max-width: 56rem; }
 }
 
-/* Home / all-documents link — hidden on the index itself. */
-.home-link { text-decoration: none; flex: 0 0 auto; }
-.is-index .home-link { display: none; }
+/* The Chill Division logo, top left, links to the list of documents. 34 px
+   tall is the brand's smallest screen size, with clear space either side. */
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 2.75rem;
+  padding: 0 0.85rem 0 0.25rem;
+  margin-right: 0.15rem;
+  border-right: 1px solid var(--border);
+  color: var(--logo);
+  text-decoration: none;
+}
+.logo { display: block; color: var(--logo); }
+.home-link .logo { height: 34px; width: auto; aspect-ratio: 503.56 / 251.67; }
 /* View toggle and chapter pager are meaningless on the index page. */
 .is-index .view-toggle,
 .is-index .pager { display: none; }
@@ -204,7 +279,7 @@ html[data-theme="dark"] #themeToggle .icon-moon { display: none; }
   display: none;
   position: fixed;
   inset: var(--topbar-h) 0 0 0;
-  background: rgba(10, 20, 35, 0.45);
+  background: var(--overlay);
   z-index: 25;
 }
 
@@ -256,12 +331,14 @@ html[data-theme="dark"] #themeToggle .icon-moon { display: none; }
 }
 .toc ul ul a { font-size: 0.8rem; color: var(--muted); }
 
-.toc a:hover { background: var(--accent-soft); color: var(--accent-strong); }
+.toc a:hover { background: var(--soft); color: var(--ink); }
 .toc a.active {
-  background: var(--accent-soft);
-  color: var(--accent-strong);
+  background: var(--soft);
+  color: var(--ink);
   font-weight: 600;
 }
+.toc > ul > li > a.active { box-shadow: inset 3px 0 0 var(--accent); }
+html[data-theme="dark"] .toc > ul > li > a.active { box-shadow: inset 3px 0 0 #6fa784; }
 
 /* --------------------------------------------------------------------------
    Document content
@@ -273,24 +350,35 @@ body.mode-chapters .chapter { display: none; }
 body.mode-chapters .chapter.current { display: block; }
 
 .content h1, .content h2, .content h3, .content h4 {
-  line-height: 1.3;
+  color: var(--ink);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
   scroll-margin-top: calc(var(--topbar-h) + 1rem);
 }
 
 .content h1 { font-size: 1.75rem; margin: 1.5rem 0 1rem; }
 
 .content h2 {
-  font-size: 1.45rem;
+  font-size: 1.5rem;
+  letter-spacing: -0.025em;
   margin: 2.25rem 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .content h3 { font-size: 1.15rem; margin: 1.9rem 0 0.7rem; }
-.content h4 { font-size: 1rem; margin: 1.5rem 0 0.6rem; color: var(--muted); }
+.content h4 { font-size: 1rem; margin: 1.5rem 0 0.6rem; color: var(--muted); letter-spacing: -0.01em; }
 
-.content a { color: var(--accent-strong); text-decoration: none; }
-.content a:hover { text-decoration: underline; }
+.content a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.content a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.content strong { color: var(--ink); font-weight: 650; }
 
 .content p { margin: 0.8rem 0; }
 
@@ -315,14 +403,21 @@ body.mode-chapters .chapter.current { display: block; }
   color: var(--accent-strong);
 }
 
+/* Callouts, as the brand draws them: a soft panel with a coloured edge.
+   Green for tips and context, warning orange (build.py adds .warn to a
+   blockquote that starts with the warning sign) for things that could trip
+   someone up. */
 .content blockquote {
   margin: 1.25rem 0;
-  padding: 0.75rem 1.1rem;
-  background: var(--accent-soft);
+  padding: 0.8rem 1.15rem;
+  background: var(--soft);
+  border: 1px solid var(--border);
   border-left: 4px solid var(--accent);
-  border-radius: 0 0.55rem 0.55rem 0;
+  border-radius: 12px;
   color: var(--text);
 }
+html[data-theme="dark"] .content blockquote { border-left-color: #6fa784; }
+.content blockquote.warn { border-left-color: var(--warning); }
 .content blockquote p { margin: 0.4rem 0; }
 
 .content code {
@@ -330,14 +425,14 @@ body.mode-chapters .chapter.current { display: block; }
   font-size: 0.86em;
   background: var(--code-bg);
   border: 1px solid var(--border);
-  border-radius: 0.35rem;
+  border-radius: 6px;
   padding: 0.08em 0.35em;
 }
 
 .content pre {
   background: var(--code-bg);
   border: 1px solid var(--border);
-  border-radius: 0.55rem;
+  border-radius: 12px;
   padding: 0.9rem 1.1rem;
   overflow-x: auto;
 }
@@ -349,26 +444,36 @@ body.mode-chapters .chapter.current { display: block; }
   margin: 2rem 0;
 }
 
+/* Tables, as the brand draws them: hairline rows in a rounded frame, with
+   small upper-case column headings. */
 .content table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 1.25rem 0;
   font-size: 0.9rem;
   display: block;
   overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 .content table thead th {
-  background: var(--accent-soft);
-  color: var(--accent-strong);
+  background: var(--soft);
+  color: var(--muted);
   text-align: left;
+  font-size: 0.74rem;
   font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .content table th, .content table td {
-  border: 1px solid var(--border);
-  padding: 0.5rem 0.7rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 0.8rem;
   vertical-align: top;
 }
-.content table tbody tr:nth-child(even) { background: color-mix(in srgb, var(--accent-soft) 40%, transparent); }
+.content table th + th, .content table td + td { border-left: 1px solid var(--border); }
+.content table tbody tr:last-child > td { border-bottom: 0; }
 
 .content img { max-width: 100%; height: auto; }
 
@@ -430,18 +535,18 @@ body.is-form .pager { display: none; }
   font: inherit;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--accent-strong);
+  color: var(--ink);
   background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 0.55rem;
-  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
   cursor: pointer;
   max-width: 45%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.pager button:hover:not(:disabled) { border-color: var(--accent); }
+.pager button:hover:not(:disabled) { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-text); }
 .pager button:disabled { opacity: 0.35; cursor: default; }
 
 .pager .pager-label {
@@ -460,8 +565,8 @@ body.is-form .pager { display: none; }
   gap: 0.5rem 1rem;
   flex-wrap: wrap;
 }
-.docfooter a { color: var(--accent-strong); text-decoration: none; white-space: nowrap; }
-.docfooter a:hover { text-decoration: underline; }
+.docfooter a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.docfooter a:hover { color: var(--ink); }
 
 /* --------------------------------------------------------------------------
    Staging channel: draft warning shown on every page
@@ -470,15 +575,17 @@ body.is-form .pager { display: none; }
 .channel-banner {
   max-width: 48rem;
   margin: 0 0 1.5rem;
-  padding: 0.65rem 1rem;
-  background: color-mix(in srgb, #f59e0b 16%, var(--panel));
-  border: 1px solid color-mix(in srgb, #f59e0b 45%, var(--border));
-  border-radius: 0.55rem;
+  padding: 0.75rem 1.1rem;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--warning);
+  border-radius: 12px;
   font-size: 0.88rem;
   line-height: 1.5;
 }
-.channel-banner a { color: var(--accent-strong); text-decoration: none; font-weight: 600; }
-.channel-banner a:hover { text-decoration: underline; }
+.channel-banner strong { color: var(--ink); }
+.channel-banner a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+.channel-banner a:hover { color: var(--accent); }
 
 /* --------------------------------------------------------------------------
    How-to-use modal
@@ -487,7 +594,7 @@ body.is-form .pager { display: none; }
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 20, 35, 0.45);
+  background: var(--overlay);
   z-index: 60;
   display: flex;
   justify-content: center;
@@ -501,7 +608,7 @@ body.is-form .pager { display: none; }
   max-width: 34rem;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 0.8rem;
+  border-radius: 14px;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -514,7 +621,7 @@ body.is-form .pager { display: none; }
   padding: 0.9rem 1.25rem;
   border-bottom: 1px solid var(--border);
 }
-.modal-head h2 { margin: 0; font-size: 1.05rem; }
+.modal-head h2 { margin: 0; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
 
 .modal-body { padding: 0.5rem 1.25rem; font-size: 0.92rem; }
 
@@ -526,14 +633,14 @@ body.is-form .pager { display: none; }
 .modal-cta {
   font-size: 0.88rem;
   font-weight: 600;
-  color: #fff;
-  background: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: 0.55rem;
-  padding: 0.5rem 1rem;
+  color: var(--btn-text);
+  background: var(--btn-bg);
+  border: 1.5px solid var(--btn-bg);
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
   text-decoration: none;
 }
-.modal-cta:hover { background: var(--accent-strong); }
+.modal-cta:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
 
 /* Sidebar trigger for the modal. Hidden on the index (which links to it from
    the intro text) and on the How to use page itself. */
@@ -546,16 +653,16 @@ body.is-form .pager { display: none; }
   margin: 0 0 0.9rem;
   padding: 0.45rem 0.75rem;
   border: 1px solid var(--border);
-  border-radius: 0.55rem;
-  background: var(--accent-soft);
-  color: var(--accent-strong);
+  border-radius: 12px;
+  background: var(--soft);
+  color: var(--ink);
   font: inherit;
   font-size: 0.84rem;
   font-weight: 600;
   text-align: left;
   cursor: pointer;
 }
-.howto-link:hover { border-color: var(--accent); }
+.howto-link:hover { border-color: var(--ink); }
 .howto-link svg { width: 1rem; height: 1rem; flex: 0 0 auto; }
 .is-index .howto-link,
 .is-howto .howto-link { display: none; }
@@ -567,7 +674,7 @@ body.is-form .pager { display: none; }
 .search-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 20, 35, 0.45);
+  background: var(--overlay);
   z-index: 60;
   display: flex;
   justify-content: center;
@@ -584,7 +691,7 @@ body.is-form .pager { display: none; }
   flex-direction: column;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 0.8rem;
+  border-radius: 14px;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -617,11 +724,11 @@ body.is-form .pager { display: none; }
   font: inherit;
   font-size: 0.68rem;
   font-weight: 600;
-  border-radius: 0.4rem;
-  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
   cursor: pointer;
 }
-#searchClose:hover { border-color: var(--accent); color: var(--accent); }
+#searchClose:hover { border-color: var(--ink); color: var(--ink); }
 
 .search-results { overflow-y: auto; overscroll-behavior: contain; }
 
@@ -643,7 +750,7 @@ body.is-form .pager { display: none; }
   cursor: pointer;
 }
 .search-result:last-child { border-bottom: 0; }
-.search-result:hover, .search-result.selected { background: var(--accent-soft); }
+.search-result:hover, .search-result.selected { background: var(--soft); }
 
 .sr-meta {
   flex: 0 0 auto;
@@ -651,18 +758,18 @@ body.is-form .pager { display: none; }
   font-weight: 650;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  color: var(--accent-strong);
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  border-radius: 0.35rem;
-  padding: 0.05rem 0.4rem;
+  color: var(--ink);
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
 }
 
 .sr-text { flex: 1; min-width: 0; }
 .sr-text.sr-heading { font-weight: 650; }
 
 .search-result mark {
-  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  background: var(--accent-soft);
   color: inherit;
   border-radius: 0.2rem;
   padding: 0 0.08em;
@@ -702,27 +809,28 @@ body.is-form .pager { display: none; }
 .doc-card {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 0.8rem;
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
+  border-radius: 14px;
+  padding: 1.35rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.doc-card h3 { margin: 0; font-size: 1.05rem; }
+.doc-card h3 { margin: 0; font-size: 1.1rem; }
 .doc-card .version-badge { align-self: flex-start; margin-left: 0; }
 .doc-card .doc-links { margin-top: auto; display: flex; gap: 0.6rem; padding-top: 0.75rem; }
 .doc-card .doc-links a {
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   font-weight: 600;
-  color: var(--accent-strong);
+  color: var(--ink);
   text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 0.4rem 0.8rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
-.doc-card .doc-links a:hover { border-color: var(--accent); }
-.doc-card .doc-links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.doc-card .doc-links a:hover { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-text); }
+.doc-card .doc-links a.primary { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-text); }
+.doc-card .doc-links a.primary:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
 
 /* --------------------------------------------------------------------------
    Print — A4
@@ -739,13 +847,19 @@ body.is-form .pager { display: none; }
   :root, html[data-theme="dark"] {
     --bg: #ffffff;
     --panel: #ffffff;
-    --text: #17202b;
-    --muted: #4a5866;
-    --accent: #1a5fc4;
-    --accent-strong: #14509f;
-    --accent-soft: #edf3fc;
-    --border: #c9d4e0;
-    --code-bg: #f2f5f9;
+    --soft: #f5f5f2;
+    --ink: #0d0d0d;
+    --text: #2c2c2a;
+    --muted: #64645f;
+    --accent: #2f6b45;
+    --accent-strong: #0d0d0d;
+    --accent-soft: #eaf2ec;
+    --border: #d9d8d2;
+    --code-bg: #f5f5f2;
+    --warning: #b4541a;
+    --btn-bg: #0d0d0d;
+    --btn-text: #ffffff;
+    --logo: #000000;
   }
 
   body { background: #fff; font-size: 10.5pt; line-height: 1.5; }
@@ -763,14 +877,8 @@ body.is-form .pager { display: none; }
     padding-top: 30vh;
     text-align: center;
   }
-  .print-title .pt-brand {
-    font-size: 12pt;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-strong);
-    margin-bottom: 1.5rem;
-  }
+  .print-title .pt-brand { margin-bottom: 1.75rem; }
+  .print-title .pt-brand .logo { height: 18mm; width: auto; margin: 0 auto; aspect-ratio: 503.56 / 251.67; }
   .print-title h1 { font-size: 22pt; margin: 0 0 1rem; }
   .print-title .pt-version { color: var(--muted); font-size: 10pt; }
 
@@ -778,7 +886,7 @@ body.is-form .pager { display: none; }
   .is-form .print-title { display: none; }
 
   /* Draft banner prints on the cover page so staging PDFs are unmistakable. */
-  .channel-banner { border: 2px solid #92400e; background: #fef3e2; }
+  .channel-banner { border: 2px solid var(--warning); border-left-width: 6px; background: #fbf1ea; }
 
   .chapter > h1, .chapter > h2:first-child { page-break-before: always; }
   .chapter:first-of-type > h2:first-child { page-break-before: avoid; }

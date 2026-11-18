@@ -19,6 +19,7 @@ Works on Windows, Linux, and WSL (uses the Windows browser from inside WSL).
 """
 
 import argparse
+import base64
 import datetime
 import glob
 import html as html_lib
@@ -147,7 +148,29 @@ def render_markdown(md_text: str) -> str:
     md.enable("table")
     tokens = md.parse(md_text)
     apply_hierarchical_numbering(tokens, md_text.split("\n"))
-    return md.renderer.render(tokens, md.options, {})
+    return mark_warning_callouts(md.renderer.render(tokens, md.options, {}))
+
+
+# A blockquote that starts with the warning sign is a warning callout, and
+# style.css gives it the brand's warning-orange edge instead of green.
+WARNING_CALLOUT_RE = re.compile(r"<blockquote>(\s*<p>\s*(?:<strong>\s*)?\u26a0)")
+
+
+def mark_warning_callouts(html: str) -> str:
+    return WARNING_CALLOUT_RE.sub(r'<blockquote class="warn">\1', html)
+
+
+# The brand typeface (Inter) lives in publish/fonts/ and style.css refers to
+# it as url("fonts/<file>.woff2"). Each page is a single self-contained file,
+# so the fonts go in as data: URIs.
+FONT_URL_RE = re.compile(r'url\("fonts/([A-Za-z0-9._-]+\.woff2)"\)')
+
+
+def inline_fonts(css: str) -> str:
+    def repl(m):
+        data = (PUBLISH_DIR / "fonts" / m.group(1)).read_bytes()
+        return f'url("data:font/woff2;base64,{base64.b64encode(data).decode("ascii")}")'
+    return FONT_URL_RE.sub(repl, css)
 
 
 def assign_heading_ids(html: str):
@@ -552,7 +575,7 @@ def html_to_pdf(html_path: Path, pdf_path: Path, browser: str, kind: str) -> boo
 
 INDEX_BODY = """
 <div class="print-only print-title">
-  <div class="pt-brand">Chill Division</div>
+  <div class="pt-brand"><svg class="logo" role="img" aria-label="Chill Division"><use href="#cd-logo"/></svg></div>
   <h1>Standard Operating Procedures</h1>
 </div>
 <section class="chapter current">
@@ -740,7 +763,7 @@ def main():
     out = Path(args.out)
     DIST_DIR = out if out.is_absolute() else REPO_ROOT / out
 
-    css = (PUBLISH_DIR / "style.css").read_text(encoding="utf-8")
+    css = inline_fonts((PUBLISH_DIR / "style.css").read_text(encoding="utf-8"))
     template = (PUBLISH_DIR / "template.html").read_text(encoding="utf-8")
     generated = datetime.date.today().isoformat()
 

@@ -12,12 +12,18 @@
 </head>
 <body class="mode-chapters @@BODYCLASS@@">
 
+<!-- The Chill Division logo, drawn once and used in the top bar and on the
+     printed cover. It's pure black (white in dark mode), never recoloured. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="cd-logo" viewBox="31.52 157.47 503.56 251.67"><g fill="currentColor"><path d="M165.84 255.11 165.84 240.53 191.1 240.53 191.1 261.28 174.56 277.97 120.29 277.97 120.29 174.24 138.18 157.7 191.1 157.7 191.1 203.1 165.84 203.1 165.84 180.55 145.54 180.55 145.54 255.12 165.84 255.12Z"/><path d="M225.1 207.15 246.75 207.15 246.75 157.69 272.01 157.69 272.01 277.96 246.75 277.96 246.75 229.85 225.1 229.85 225.1 277.96 199.99 277.96 199.99 157.69 225.1 157.69 225.1 207.15Z"/><path d="M309.45 188.45 282.29 188.45 282.29 157.47 309.45 157.47 309.45 188.45ZM308.71 277.96 283.02 277.96 283.02 195.52 308.71 195.52 308.71 277.96Z"/><path d="M391.15 277.96 391.15 157.69 416.41 157.69 416.41 255.73 451.59 255.73 451.59 277.95 391.16 277.95Z"/><path d="M319.08 277.96 319.08 157.69 344.34 157.69 344.34 255.73 379.52 255.73 379.52 277.95 319.09 277.95Z"/><path d="M83.24 288.65 102.63 307.74 102.63 392.23 85.79 408.92 31.52 408.92 31.52 288.65 83.24 288.65ZM77.37 311.5 56.77 311.5 56.77 386.07 77.37 386.07 77.37 311.5Z"/><path d="M197.32 288.65 222.73 288.65 207.1 408.92 167.86 408.92 151.92 288.65 177.63 288.65 187.4 381.11 197.32 288.65Z"/><path d="M332.99 408.92 268.05 408.92 268.05 371.49 292.86 371.49 292.86 386.22 308.19 386.22 308.19 366.98 268.8 336.91 268.8 288.65 332.24 288.65 332.24 324.43 309.84 324.43 309.84 311.65 293.6 311.65 293.6 327.28 332.99 357.5 332.99 408.91Z"/><path d="M451.38 288.65 451.38 408.92 381.32 408.92 381.32 288.65 451.38 288.65ZM427.02 386.67 427.02 311.05 405.67 311.05 405.67 386.67 427.02 386.67Z"/><path d="M512.23 288.65 535.08 288.65 535.08 408.92 511.03 408.92 487.28 339.87 487.28 408.92 464.58 408.92 464.58 288.65 488.63 288.65 512.23 357.71 512.23 288.65Z"/><path d="M139.63 319.62 112.47 319.62 112.47 288.64 139.63 288.64 139.63 319.62ZM138.9 409.14 113.21 409.14 113.21 326.7 138.9 326.7 138.9 409.14Z"/><path d="M257.81 319.62 230.65 319.62 230.65 288.64 257.81 288.64 257.81 319.62ZM257.07 409.14 231.38 409.14 231.38 326.7 257.07 326.7 257.07 409.14Z"/><path d="M370.74 319.62 343.58 319.62 343.58 288.64 370.74 288.64 370.74 319.62ZM370 409.14 344.31 409.14 344.31 326.7 370 326.7 370 409.14Z"/></g></symbol>
+</svg>
+
 <header class="topbar">
   <button id="navToggle" class="icon-btn" aria-label="Toggle navigation">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <a class="home-link icon-btn" href="index.html" aria-label="All documents" title="All documents">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h5v-5h4v5h5v-9"/></svg>
+  <a class="home-link" href="index.html" aria-label="Chill Division, all documents" title="All documents">
+    <svg class="logo" role="img" aria-label="Chill Division"><use href="#cd-logo"/></svg>
   </a>
   <div class="doc-title">@@TITLE@@<span class="version-badge">@@VERSION@@</span></div>
   <div class="controls">
@@ -51,7 +57,7 @@
   <main id="content" class="content">
 @@BANNER@@
     <div class="print-only print-title">
-      <div class="pt-brand">Chill Division</div>
+      <div class="pt-brand"><svg class="logo" role="img" aria-label="Chill Division"><use href="#cd-logo"/></svg></div>
       <h1>@@TITLE@@</h1>
       <div class="pt-version">@@VERSION@@ &middot; Generated @@GENERATED@@</div>
     </div>
