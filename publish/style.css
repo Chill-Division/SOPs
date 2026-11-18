@@ -663,7 +663,15 @@ html[data-theme="dark"] .content blockquote { border-left-color: #6fa784; }
 .content table th + th, .content table td + td { border-left: 1px solid var(--border); }
 .content table tbody tr:last-child > td { border-bottom: 0; }
 
+/* Screenshots and photos. A hairline frame keeps a white app screen from
+   melting into the page. Markdown puts each image in a paragraph of its own. */
 .content img { max-width: 100%; height: auto; }
+.content p > img:only-child {
+  display: block;
+  margin: 0.4rem 0 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
 
 /* --------------------------------------------------------------------------
    Fill-in forms (e.g. Universal Shipping Manifest)
@@ -1081,6 +1089,9 @@ body.is-form .pager { display: none; }
 
   h1, h2, h3, h4 { page-break-after: avoid; }
   table, blockquote, pre, img { page-break-inside: avoid; }
+  /* A screenshot shares its page with the step it belongs to. */
+  .content p > img:only-child { max-height: 125mm; width: auto; }
+  .content p:has(+ p > img:only-child) { break-after: avoid; }
   li { page-break-inside: avoid; }
 
   .content table { display: table; font-size: 9pt; }

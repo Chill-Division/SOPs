@@ -576,6 +576,8 @@ def html_to_pdf(html_path: Path, pdf_path: Path, browser: str, kind: str) -> boo
             stage = Path(tempfile.mkdtemp(prefix="sop-pdf-", dir="/mnt/c/Users/Public"))
             cleanup_dir = stage
             shutil.copy2(html_path, stage / html_path.name)
+            if (html_path.parent / "images").is_dir():
+                shutil.copytree(html_path.parent / "images", stage / "images")
             win_stage = "C:\\Users\\Public\\" + stage.name
             url = f"file:///C:/Users/Public/{stage.name}/{html_path.name}"
             out_arg = f"{win_stage}\\{pdf_path.name}"
@@ -748,6 +750,22 @@ Disallow: /
 """
 
 
+# Screenshots and photos for the documents live in images/, one folder per
+# document, and go into the site as they are. A page's HTML is otherwise
+# self-contained, and the PDFs are printed from dist/ in place, so they find
+# the images there too.
+IMAGES_DIR = REPO_ROOT / "images"
+
+
+def copy_images():
+    if not IMAGES_DIR.is_dir():
+        return
+    dest = DIST_DIR / "images"
+    shutil.copytree(IMAGES_DIR, dest, dirs_exist_ok=True)
+    count = sum(1 for f in dest.rglob("*") if f.is_file())
+    print(f"  IMG   {shown(dest)} ({count} files)")
+
+
 def write_robots():
     (DIST_DIR / "robots.txt").write_text(ROBOTS_TXT, encoding="utf-8")
 
@@ -904,6 +922,8 @@ def main():
     build_index(built, template, css, generated,
                 {"docs": search_docs, "entries": search_entries}, forms_built)
     print(f"  HTML  {shown(DIST_DIR / 'index.html')}")
+
+    copy_images()
 
     if args.channel == "live":
         # robots.txt only belongs at the site root; the staging subdirectory
