@@ -540,8 +540,10 @@ html[data-theme="dark"] .diagram {
 .diagram .edge text { fill: var(--muted); }
 .diagram .edge.note path { stroke-dasharray: 3 3; }
 
-/* Boxes link to the part of the document they summarise. */
+/* Boxes link to the part of the document they summarise. Their labels
+   aren't underlined like the links in the text. */
 .diagram a { cursor: pointer; }
+.content .diagram a { text-decoration: none; }
 .diagram a:focus { outline: none; }
 .diagram a:hover path, .diagram a:hover polygon,
 .diagram a:focus-visible path, .diagram a:focus-visible polygon {
