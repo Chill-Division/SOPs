@@ -331,6 +331,7 @@ SHORT_NAMES = {
     "security-policies-and-procedures": "Security",
     "cultivation-procedures": "Cultivation",
     "advertising-sops": "Advertising",
+    "home-assistant-setup-guide": "HA setup",
     "automations-guide": "Automations",
     "how-to-use-these-documents": "How to use",
 }
@@ -859,6 +860,7 @@ def main():
         "security-policies-and-procedures",
         "cultivation-procedures",
         "advertising-sops",
+        "home-assistant-setup-guide",
         "automations-guide",
         "how-to-use-these-documents",
     ]
