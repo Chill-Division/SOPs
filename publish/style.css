@@ -662,6 +662,9 @@ html[data-theme="dark"] .content blockquote { border-left-color: #6fa784; }
 }
 .content table th + th, .content table td + td { border-left: 1px solid var(--border); }
 .content table tbody tr:last-child > td { border-bottom: 0; }
+/* A short table in a numbered step hugs its columns rather than drawing a
+   frame the full width of the text with the columns bunched to the left. */
+.content li table { width: fit-content; max-width: 100%; }
 
 /* Screenshots and photos. A hairline frame keeps a white app screen from
    melting into the page. Markdown puts each image in a paragraph of its own. */
@@ -671,6 +674,29 @@ html[data-theme="dark"] .content blockquote { border-left-color: #6fa784; }
   margin: 0.4rem 0 0.6rem;
   border: 1px solid var(--border);
   border-radius: 10px;
+}
+/* A screenshot is shrunk to the width of the text. Clicking it shows it full
+   size over a dimmed page (template.html), and any click or Esc closes it. */
+.content p > img.zoomable { cursor: zoom-in; }
+.img-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vh 2vw;
+  background: rgba(13, 13, 13, 0.82);
+  cursor: zoom-out;
+}
+.img-zoom img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* --------------------------------------------------------------------------
@@ -1090,7 +1116,8 @@ body.is-form .pager { display: none; }
   h1, h2, h3, h4 { page-break-after: avoid; }
   table, blockquote, pre, img { page-break-inside: avoid; }
   /* A screenshot shares its page with the step it belongs to. */
-  .content p > img:only-child { max-height: 125mm; width: auto; }
+  .content p > img:only-child { max-height: 100mm; width: auto; }
+  .img-zoom { display: none; }
   .content p:has(+ p > img:only-child) { break-after: avoid; }
   li { page-break-inside: avoid; }
 
