@@ -465,6 +465,36 @@
     }
   });
 
+  /* ---------- screenshots ---------- */
+  /* A screenshot that's been shrunk to fit the text can be clicked to see it
+     full size. Any click or Esc closes it again. */
+  var zoomBox = null;
+  function closeZoom() {
+    if (zoomBox) { zoomBox.parentNode.removeChild(zoomBox); zoomBox = null; }
+  }
+  function shrunk(img) { return img.naturalWidth > img.clientWidth + 8; }
+  Array.prototype.forEach.call(document.querySelectorAll(".content p > img:only-child"), function (img) {
+    function mark() { img.classList.toggle("zoomable", shrunk(img)); }
+    if (img.complete) mark(); else img.addEventListener("load", mark);
+    window.addEventListener("resize", mark);
+    img.addEventListener("mouseenter", mark);
+    img.addEventListener("click", function (ev) {
+      if (zoomBox || !shrunk(img)) return;
+      ev.stopPropagation();
+      zoomBox = document.createElement("div");
+      zoomBox.className = "img-zoom";
+      var big = document.createElement("img");
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt;
+      zoomBox.appendChild(big);
+      zoomBox.addEventListener("click", closeZoom);
+      document.body.appendChild(zoomBox);
+    });
+  });
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape") closeZoom();
+  });
+
   /* ---------- init ---------- */
   var savedView = "chapters";
   try { savedView = localStorage.getItem("sop-view") || "chapters"; } catch (e) {}
