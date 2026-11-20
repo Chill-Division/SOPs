@@ -26,7 +26,7 @@ here.)
 | **Security Policies & Procedures** (`v3.0.1`) | Current, from v2.6.1 §13-37 | Access control, surveillance, staff / visitor procedures, records, disposal, inward / outward goods. |
 | **Advertising SOPs** (`v3.0.1`) | In progress, not yet published on the website | Advertising and promotion within the New Zealand regulatory constraints. |
 | **Home Assistant Setup Guide** (`v3.1`, bonus) | Current | Setting up Home Assistant, the ESPHome app, a first PoE-P4 and an SHT45, step by step with screenshots. |
-| **Automations Guide** (`v3.0.1`, bonus) | Current, from a working HA config | How to set up the automations referenced in the other docs: sensors, Home Assistant helpers, ESPHome vs Home Assistant logic. |
+| **Automations Guide** (`v3.0.2`, bonus) | Current, from a working HA config | How to set up the automations referenced in the other docs: sensors, Home Assistant helpers, ESPHome vs Home Assistant logic. |
 | **How to use these documents** (`v3.0.1`) | Framework only, content to come | The basics for new readers: what these documents are, how to read them, and where to start. |
 
 A licence application is expected to include the Security and Cultivation

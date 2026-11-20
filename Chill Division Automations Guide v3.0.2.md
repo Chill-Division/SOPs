@@ -3,7 +3,7 @@
 **Cultivation Facility**
 Automations Guide
 
-v3.0.1
+v3.0.2
 "The complete set"
 
 ---
@@ -74,8 +74,9 @@ reasons.
   update that restarts Home Assistant mid-day can interrupt an automation that
   currently has a relay energised, such as a CO2 solenoid, a humidifier, or an
   irrigation pump left on. Do updates during lights-off, and check afterwards that
-  nothing was left running. Better still, enforce the hard cut-offs in ESPHome so a
-  stuck relay switches *itself* off regardless of what HA is doing.
+  nothing was left running. Better still, enforce the hard cut-offs on the device
+  itself, with an auto-off time on the Shelly (or in ESPHome), so a stuck relay
+  switches *itself* off regardless of what HA is doing.
 
 - **Write automations that fail safe if interrupted.** Prefer automations that
   leave the room in a safe state if they are cut off part-way through. Anything
@@ -253,14 +254,17 @@ whatever friendly names you like. Items marked *(per room)* need one per grow ro
 The automations expect these to exist as Home Assistant entities. Most are M5Stack
 units flashed with ESPHome using the configs in the
 [Chill Division M5Stack-ESPHome repo](https://github.com/Chill-Division/M5Stack-ESPHome).
-Wire everything back over PoE where possible.
+Wire everything back over PoE where possible. The pump, humidifier and CO2 relays
+are Shelly Pro units in the switchboard, which Home Assistant's own Shelly
+integration adds directly.
 
 | Role | Suggested hardware | Provides (entity) |
 | --- | --- | --- |
-| Room microcontroller | [M5Stack PoESP32](https://shop.m5stack.com/products/esp32-ethernet-unit-with-poe) (Ethernet + PoE) | Hosts the sensors / relays below and computes VPD on-device |
+| Sensor microcontroller | [M5Stack PoE-P4](https://shop.m5stack.com/products/unit-poe-with-esp32-p4) (Ethernet + PoE), one for each sensor or small group of sensors | Hosts the sensors below and computes VPD on-device |
 | CO2 + temp / humidity | [SCD40 CO2 unit](https://shop.m5stack.com/products/co2-unit-with-temperature-and-humidity-sensor-scd40) | `sensor.growroom_co2`, `..._vpd_canopy` |
 | Temp / humidity / pressure | ENV sensor (SHT + pressure) | `sensor.growroom_vpd_top`, room pressure |
-| Relays (solenoids, pump, humidifier, CO2) | [M5Stack 4-Relay unit](https://shop.m5stack.com/products/4-relay-unit) / SSR | `switch.growroom_*` relays |
+| Relays (pump, humidifier, CO2) | [Shelly Pro](https://www.shelly.com/collections/lan) relays over Ethernet, in the switchboard | `switch.growroom_*` relays |
+| Relays (irrigation solenoids, 24 V AC) | [M5Stack 4-Relay unit](https://shop.m5stack.com/products/4-relay-unit) | `switch.growroom_solenoid_*` |
 | Substrate moisture / EC | THC-S RS485 substrate sensor | `sensor.growroom_substrate_vwc`, `..._pwec` |
 | Reservoir level | Ultrasonic distance unit on the tank lid | `sensor.growroom_reservoir_level` |
 | Auto Batch Doser | [Chill Division Auto Batch Doser](https://github.com/Chill-Division/M5Stack-ESPHome) (peristaltic pumps) | `switch.growroom_doser_motor_1..4` |
@@ -1456,7 +1460,7 @@ run more than one (`_gr1`, `_gr2`, …).
 | `sensor.growroom_co2` | Canopy CO2 (SCD40) |
 | `sensor.growroom_vpd_canopy` / `_top` | VPD at / above canopy (computed in ESPHome) |
 | `switch.growroom_co2_solenoid` | CO2 solenoid relay |
-| `switch.growroom_humidifier` | Humidifier relay / SSR |
+| `switch.growroom_humidifier` | Humidifier relay |
 | `switch.growroom_irrigation_pump` | Fertigation pump relay |
 | `switch.growroom_solenoid_fertigation` / `_recirc` / `_mainswater` | Fertigation / recirc / mains-water solenoids |
 | `switch.growroom_doser_motor_1..4` | Auto Batch Doser channels (1 cleanse, 2 balance, 3 grow / bloom, 4 core / fade) |
@@ -1474,6 +1478,8 @@ run more than one (`_gr1`, `_gr2`, …).
 ---
 
 ## Changelog
+
+* v3.0.2 The sensor table now uses the M5Stack PoE-P4 in place of the PoESP32, one for each sensor or small group of sensors, and Shelly Pro relays in the switchboard for the pump, humidifier and CO2, with an auto-off time on each Shelly as the hard cut-off. The irrigation solenoids stay on the M5Stack 4-Relay unit.
 
 * v3.0.1 version alignment with the suite release. No changes to this document's content.
 
