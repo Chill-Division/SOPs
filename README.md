@@ -63,20 +63,20 @@ implementation of them.
 We want changes to these SOPs to go through pull requests so they can be
 reviewed, discussed, and traced over time.
 
-**Keep changes small.** Versions of these documents are cleared with the
-Medicinal Cannabis Agency ahead of time, so large rewrites are strongly
-discouraged — every substantial change has to be re-reviewed against what the
-Agency has already accepted. Small, incremental, well-reasoned PRs are far more
-likely to be merged than sweeping restructures. If you believe a large change is
-warranted, open an issue to discuss it *before* writing it.
+**Keep changes small.** The Cultivation and Security documents are cleared with
+the Medicinal Cannabis Agency ahead of time, so large rewrites of them are
+strongly discouraged, as every substantial change has to be re-reviewed against
+what the Agency has already accepted. Small, incremental, well-reasoned PRs are
+far more likely to be merged than sweeping restructures. If you believe a large
+change is warranted, open an issue to discuss it *before* writing it.
 
-**How releases work.** `main` is the current release, the version the Medicinal
-Cannabis Agency has approved, and it is what the live website publishes.
-Proposed changes for the next version are gathered on the `staging` branch,
-which is published separately as a clearly marked draft at `/staging/`. Once the
-Agency approves a proposed version, `staging` becomes the new release on `main`
-and is tagged (e.g. `v3.1.0`). Until then, follow the released documents, not
-the draft. **Pull requests should target `staging`, not `main`.**
+**How releases work.** A licence application is built on two of these
+documents, the Cultivation Procedures and the Security Policies and Procedures.
+Those are the only two the Medicinal Cannabis Agency approves, so a change to
+either waits on the `staging` branch, published as a clearly marked draft at
+`/staging/`, until the Agency signs it off. The other documents aren't reviewed
+by the Agency, and go live as soon as they're ready. `main` is what the live
+website publishes. **Pull requests should target `staging`, not `main`.**
 
 1. **Branch** off `staging`, using a short descriptive name such as
    `security/duress-buttons` or `cultivation/defoliation`.
@@ -127,11 +127,12 @@ so every page and PDF uses it.
 
 The site has two channels:
 
-- **Live** (site root) is the Agency-approved release, built from `main`.
-- **Staging** (`/staging/`) is the proposed next version, built from the
-  `staging` branch. Every page carries a "not yet approved" banner and PDFs are
-  suffixed `-draft` so they can't be mistaken for the approved ones. The staging
-  PDF bundle is what gets submitted to the Agency for approval.
+- **Live** (site root) is the current release, built from `main`.
+- **Staging** (`/staging/`) holds the proposed changes, built from the
+  `staging` branch. Every page carries a draft banner, and PDFs are suffixed
+  `-draft` so they can't be mistaken for the released ones. On the Cultivation
+  and Security documents the banner also says the Agency hasn't approved them
+  yet, and their staging PDFs are what get sent to the Agency for approval.
 
 Documents that are still being written can be kept off the website entirely
 (no page, PDF, index card or search results) by listing them in
@@ -148,16 +149,12 @@ python3 publish/build.py --channel staging --out dist/staging  # draft site
 python3 publish/build.py --include-unpublished  # preview unpublished docs too
 ```
 
-Once the Agency approves the proposed version, a maintainer squashes `staging`
-into `main` as the new release, tags it, and resets `staging` on top of it:
-
-```sh
-git checkout staging && git checkout --orphan _release
-git commit -m "v3.1 unified release"
-git branch -M main && git tag v3.1.0
-git push --force origin main v3.1.0
-git branch -f staging main && git push --force origin staging
-```
+Each document is released on its own. When a change is ready to go live (for
+the Cultivation and Security documents, once the Agency has approved it), a
+maintainer brings it onto `main` as an ordinary commit, with the version on the
+document's cover and in its file name bumped (e.g. `v3.0.1` to `v3.0.2`). The
+change is kept on `staging` too, with the new version recorded in that
+document's changelog there, so it carries through to the next proposed version.
 
 PDF generation auto-detects an installed browser (on WSL it borrows the Windows
 Chrome / Edge, preferring Chrome). Set `CHROME_BIN` to override. If PDFs fail

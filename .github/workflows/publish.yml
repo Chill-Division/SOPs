@@ -1,7 +1,7 @@
 name: Publish SOPs
 
 # Two channels from one build:
-#   live    - the Agency-approved release, built from the main branch and
+#   live    - the current release, built from the main branch and
 #             served at the site root
 #   staging - the proposed next version, built from the staging branch (or a
 #             pull request) and served under /staging/ with a draft banner
@@ -56,7 +56,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq graphviz fonts-liberation
 
-      - name: Build live site (main, the approved release)
+      - name: Build live site (main, the current release)
         run: |
           git checkout --quiet --detach origin/main
           python publish/build.py --out dist
