@@ -44,13 +44,21 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PUBLISH_DIR = Path(__file__).resolve().parent
 DIST_DIR = REPO_ROOT / "dist"
 
-# Publishing channel. "live" is the Agency-approved release (built from the
-# latest v* tag). "staging" is the proposed next version built from the main
-# branch: every page carries a draft banner and PDFs get a -draft suffix.
+# Publishing channel. "live" is the current release, built from the main
+# branch. "staging" holds the proposed changes, built from the staging branch.
+# Every staging page carries a draft banner and its PDFs get a -draft suffix.
 DRAFT = False
 BANNER = ""
 
 DRAFT_BANNER = """<div class="channel-banner"><strong>Proposed draft.</strong>
+This version may still change or be withdrawn.
+<a href="../index.html">View the current release</a>.</div>"""
+
+# The only documents the Medicinal Cannabis Agency approves. On staging, their
+# pages (and the forms taken from them) say the Agency hasn't approved them yet.
+AGENCY_DOCS = {"cultivation-procedures", "security-policies-and-procedures"}
+
+AGENCY_DRAFT_BANNER = """<div class="channel-banner"><strong>Proposed draft.</strong>
 This version has not yet been approved by the Medicinal Cannabis Agency and may
 still change or be withdrawn.
 <a href="../index.html">View the current approved release</a>.</div>"""
@@ -68,6 +76,14 @@ def slugify(text: str) -> str:
     text = html_lib.unescape(text)
     text = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
     return text or "section"
+
+
+def banner_for(slug: str) -> str:
+    """The channel banner for a document's page (or a form taken from it). On
+    staging, only the documents the Agency approves say they're waiting on it."""
+    if not DRAFT:
+        return BANNER
+    return AGENCY_DRAFT_BANNER if slug in AGENCY_DOCS else DRAFT_BANNER
 
 
 def doc_meta(md_path: Path):
@@ -500,7 +516,7 @@ def build_form(form, body_html, version, template, css, generated):
         "GENERATED": generated,
         "SEARCHDATA": "",
         "SEARCHPH": "Search this form",
-        "BANNER": BANNER,
+        "BANNER": banner_for(form["doc"]),
     })
     out_html = DIST_DIR / f"{form['slug']}.html"
     out_html.write_text(page, encoding="utf-8")
@@ -832,7 +848,7 @@ def main():
                         help="Also build the documents listed in UNPUBLISHED_DOCS, "
                              "for previewing them locally")
     parser.add_argument("--channel", choices=("live", "staging"), default="live",
-                        help="live (default) = the approved release; staging adds "
+                        help="live (default) = the current release. staging adds "
                              "a draft banner to every page and -draft PDF names")
     parser.add_argument("--out", default="dist",
                         help="Output directory, relative to the repo root "
@@ -908,7 +924,7 @@ def main():
             "GENERATED": generated,
             "SEARCHDATA": "",
             "SEARCHPH": "Search this document",
-            "BANNER": BANNER,
+            "BANNER": banner_for(slug),
         })
         out_html = DIST_DIR / f"{slug}.html"
         out_html.write_text(page, encoding="utf-8")
