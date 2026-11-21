@@ -55,11 +55,14 @@ A recurring decision is whether a piece of logic belongs on the microcontroller
   Examples: photoperiod scheduling, the dosing sequence, "if VPD above the target
   helper then run the humidifier until it drops", and alerting.
 
-A good pattern is **defence in depth**: ESPHome enforces the hard safety limit
-locally (e.g. shut the CO2 solenoid above an absolute ceiling), and Home Assistant
-runs the normal control loop and alerting on top. Several automations below are
-explicitly *fallbacks*: they exist because the primary control lives in ESPHome
-and HA is the backstop, or vice-versa.
+A good pattern is **defence in depth**. The hard limits live on the devices, and
+Home Assistant runs the normal control loop and alerting on top. For example, a
+hard timer on the devices stops every irrigation event, with an auto-off time on
+the pump's Shelly and a time limit on each solenoid in ESPHome, so a missed "off"
+can't flood the room. The fallback auto-off in Home Assistant (§8.4) is a second
+check on top of that. Several automations below are explicitly *fallbacks*: they
+exist because the primary control lives in ESPHome and HA is the backstop, or
+vice-versa.
 
 > **VPD is calculated on the ESPHome device**, not in HA, so it remains valid
 > during an HA restart. The on-device lambda is:
@@ -262,6 +265,14 @@ Wire everything back over PoE where possible. The pump, humidifier and CO2 relay
 are Shelly Pro units in the switchboard, which Home Assistant's own Shelly
 integration adds directly.
 
+Shelly was chosen for three reasons. The relays are compliant (they carry the RCM
+mark), so the electrician can install them in the switchboard. It's an accessible
+brand, sold through New Zealand electrical wholesalers, with plenty of help
+available online. Plus, the devices are reliable, connected over Ethernet rather
+than Wi-Fi. They also have their own auto-off timers that run on the device
+itself, so they still work if Home Assistant updates or similar during an
+automation.
+
 | Role | Suggested hardware | Provides (entity) |
 | --- | --- | --- |
 | Sensor microcontroller | [M5Stack PoE-P4](https://shop.m5stack.com/products/unit-poe-with-esp32-p4) (Ethernet + PoE), one for each sensor or small group of sensors | Hosts the sensors below and computes VPD on-device |
@@ -461,9 +472,9 @@ mode: single
 **Life-safety.** **Needs:** `sensor.growroom_co2`, `switch.growroom_co2_solenoid`,
 a `media_player` for spoken alerts, room lights to flash, and a notify service.
 
-> This is the Home Assistant layer. You **must also** enforce an absolute CO2
-> ceiling in ESPHome and with standalone hardware, so shutoff still happens if HA
-> is down.
+> Note that this is the Home Assistant layer. You **must also** set an auto-off
+> time on the CO2 relay device directly, so shutoff still happens if HA restarts
+> for an update etc.
 
 ```yaml
 alias: Growroom - CO2 - Very high, shut off and evacuate
@@ -1485,6 +1496,8 @@ run more than one (`_gr1`, `_gr2`, …).
 ## Changelog
 
 * v3.1 updates. The sensor table now uses an SHT45 for canopy temperature / humidity / VPD, as the SCD4x's built-in humidity sensor isn't accurate enough for VPD, and the calibration cross-reference now points at the Security Policies & Procedures §10. The Introduction now notes these are not GACP or GMP SOPs.
+
+* v3.0.3 The defence in depth example is now a hard timer that stops every irrigation event, with an auto-off time on the pump's Shelly and a time limit on each solenoid in ESPHome (§1). Added why the pump, humidifier and CO2 relays are Shelly (§4). The CO2 very high note now asks for an auto-off time on the CO2 relay itself, in place of the CO2 ceiling in ESPHome and standalone hardware (§6.2).
 
 * v3.0.2 The sensor table now uses the M5Stack PoE-P4 in place of the PoESP32, one for each sensor or small group of sensors, and Shelly Pro relays in the switchboard for the pump, humidifier and CO2, with an auto-off time on each Shelly as the hard cut-off. The irrigation solenoids stay on the M5Stack 4-Relay unit.
 
